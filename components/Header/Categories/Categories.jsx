@@ -69,7 +69,13 @@ export const Categories = () => {
       isMouseDown = false;
     });
 
-    listWrapper.addEventListener('touchend', function () {
+    listWrapper.addEventListener('touchend', function (event) {
+      const touch = event.touches[0];
+
+      if (rightLimitReached() && swipeLeft(pointX, touch.clientX)) {
+        list.style.marginLeft = `${getDiff()}px`;
+      }
+
       isMouseDown = false;
     });
 
