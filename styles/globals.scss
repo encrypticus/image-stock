@@ -1,0 +1,34 @@
+@import "fonts";
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "SF UI Display", Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-container {
+  max-width: 1920px;
+  min-width: 320px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.inner-container {
+  max-width: 1480px;
+  margin: auto;
+}
