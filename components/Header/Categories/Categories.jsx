@@ -55,7 +55,17 @@ export const Categories = () => {
       pointX = event.clientX;
     });
 
+    listWrapper.addEventListener('touchstart', function (event) {
+      const touch = event.touches[0];
+      isMouseDown = true;
+      pointX = touch.clientX;
+    });
+
     listWrapper.addEventListener('mouseup', function () {
+      isMouseDown = false;
+    });
+
+    listWrapper.addEventListener('touchend', function () {
       isMouseDown = false;
     });
 
@@ -79,6 +89,36 @@ export const Categories = () => {
         if (leftLimitReached()) list.style.marginLeft = 0;
         else {
           if (rightLimitReached() && swipeLeft(pointX, event.clientX)) {
+            list.style.marginLeft = list.style.marginLeft;
+            return;
+          } else {
+            list.style.marginLeft = `${margin}px`
+          }
+        }
+      }
+    }, false);
+
+    listWrapper.addEventListener('touchmove', function (event) {
+      const touch = event.touches[0];
+      if (isMouseDown) {
+        let value = pointX - touch.clientX;
+        let margin = parseInt(list.style.marginLeft) - value;
+
+        if (leftLimitReached()) list.style.marginLeft = 0;
+        else {
+          if (rightLimitReached() && swipeLeft(pointX, touch.clientX)) {
+            list.style.marginLeft = list.style.marginLeft;
+            return;
+          } else {
+            list.style.marginLeft = `${margin}px`
+          }
+        }
+
+        pointX = touch.clientX;
+
+        if (leftLimitReached()) list.style.marginLeft = 0;
+        else {
+          if (rightLimitReached() && swipeLeft(pointX, touch.clientX)) {
             list.style.marginLeft = list.style.marginLeft;
             return;
           } else {
