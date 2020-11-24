@@ -50,6 +50,10 @@ export const Categories = () => {
       return x1 > x2;
     };
 
+    const getDiff = () => {
+      return listWrapper.getBoundingClientRect().width - list.getBoundingClientRect().width;
+    };
+
     listWrapper.addEventListener('mousedown', function (event) {
       isMouseDown = true;
       pointX = event.clientX;
@@ -77,7 +81,7 @@ export const Categories = () => {
         if (leftLimitReached()) list.style.marginLeft = 0;
         else {
           if (rightLimitReached() && swipeLeft(pointX, event.clientX)) {
-            list.style.marginLeft = list.style.marginLeft;
+            list.style.marginLeft = `${getDiff()}px`;
             return;
           } else {
             list.style.marginLeft = `${margin}px`
@@ -89,7 +93,7 @@ export const Categories = () => {
         if (leftLimitReached()) list.style.marginLeft = 0;
         else {
           if (rightLimitReached() && swipeLeft(pointX, event.clientX)) {
-            list.style.marginLeft = list.style.marginLeft;
+            list.style.marginLeft = `${getDiff()}px`;
             return;
           } else {
             list.style.marginLeft = `${margin}px`
@@ -107,7 +111,7 @@ export const Categories = () => {
         if (leftLimitReached()) list.style.marginLeft = 0;
         else {
           if (rightLimitReached() && swipeLeft(pointX, touch.clientX)) {
-            list.style.marginLeft = list.style.marginLeft;
+            list.style.marginLeft = `${getDiff()}px`;
             return;
           } else {
             list.style.marginLeft = `${margin}px`
@@ -119,7 +123,7 @@ export const Categories = () => {
         if (leftLimitReached()) list.style.marginLeft = 0;
         else {
           if (rightLimitReached() && swipeLeft(pointX, touch.clientX)) {
-            list.style.marginLeft = list.style.marginLeft;
+            list.style.marginLeft = `${getDiff()}px`;
             return;
           } else {
             list.style.marginLeft = `${margin}px`
