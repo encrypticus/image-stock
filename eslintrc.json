@@ -53,6 +53,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/forbid-prop-types": "off",
     "max-len": "off",
+    "no-restricted-globals": "off",
     "import/order": [
       "error",
       {

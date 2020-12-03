@@ -19,7 +19,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   label: {
     [theme.breakpoints.down(641)]: {
-      display: 'none'
-    }
-  }
+      display: 'none',
+    },
+  },
 }));

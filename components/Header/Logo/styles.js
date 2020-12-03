@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -19,7 +19,7 @@ export const useStyles = makeStyles(theme => ({
   },
   label: {
     [theme.breakpoints.down(641)]: {
-      display: 'none'
-    }
-  }
+      display: 'none',
+    },
+  },
 }));
