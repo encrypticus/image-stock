@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     position: 'absolute',
@@ -20,6 +20,8 @@ export const useStyles = makeStyles({
     margin: 'auto',
     overflow: 'hidden',
     minHeight: 65,
-    transition: 'mask-image 1s',
+    [theme.breakpoints.down(801)]: {
+      width: '100%'
+    }
   },
-});
+}));

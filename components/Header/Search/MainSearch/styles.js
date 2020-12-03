@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
   root: {
   },
   form: {
@@ -32,5 +32,11 @@ export const useStyles = makeStyles({
       color: '#fff',
       opacity: 1,
     },
+    [theme.breakpoints.down(801)]: {
+      fontSize: 50
+    },
+    [theme.breakpoints.down(641)]: {
+      fontSize: 36
+    }
   },
-});
+}));

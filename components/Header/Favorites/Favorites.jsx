@@ -13,7 +13,7 @@ export const Favorites = () => {
       <Link href="favorites">
         <a className={styles.link} href="favorites">
           <FavoriteIcon className={styles.icon} />
-          Избранное
+          <span className={styles.label}>Избранное</span>
         </a>
       </Link>
     </div>

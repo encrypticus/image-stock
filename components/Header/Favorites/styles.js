@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: 'auto',
   },
@@ -13,5 +13,13 @@ export const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     fontSize: 18,
+    [theme.breakpoints.down(801)]: {
+      fontSize: 16,
+    },
   },
-});
+  label: {
+    [theme.breakpoints.down(641)]: {
+      display: 'none'
+    }
+  }
+}));

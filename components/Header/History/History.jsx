@@ -19,7 +19,7 @@ export const History = () => {
           startIcon: styles.icon,
         }}
       >
-        История поиска
+        <span className={styles.innerLabel}>История поиска</span>
       </Button>
     </div>
   );

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -17,9 +17,20 @@ export const useStyles = makeStyles({
     '& .MuiSvgIcon-root': {
       fontSize: 28,
     },
+    [theme.breakpoints.down(641)]: {
+      minWidth: 'auto'
+    }
   },
   label: {
     fontSize: 18,
     color: '#fff',
+    [theme.breakpoints.down(801)]: {
+      fontSize: 16
+    },
   },
-});
+  innerLabel: {
+    [theme.breakpoints.down(641)]: {
+      display: 'none'
+    }
+  }
+}));

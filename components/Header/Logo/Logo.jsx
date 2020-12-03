@@ -11,7 +11,7 @@ export const Logo = () => {
       <Link href="/">
         <a className={styles.link} href="/">
           <img className={styles.icon} src="/images/logo.png" alt="Image Stock" />
-          imageStock
+          <span className={styles.label}>imageStock</span>
         </a>
       </Link>
     </div>
