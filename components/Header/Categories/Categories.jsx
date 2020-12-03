@@ -51,6 +51,12 @@ export const Categories = () => {
       return false;
     };
 
+    const adjustList = () => {
+      if (rightBorderDetected()) {
+        list.style.marginLeft = `${getDiffBetweenWrapperAndList()}px`;
+      }
+    };
+
     const toggleListMask = () => {
       rightBorderDetected() ? listWrapper.classList.remove('style_masked__GHKHj') : listWrapper.classList.add('style_masked__GHKHj');
     };
@@ -61,7 +67,10 @@ export const Categories = () => {
       else pointX = event.clientX;
     };
 
-    const mouseUp = () => isMouseDown = false;
+    const mouseUp = () => {
+      adjustList();
+      isMouseDown = false;
+    };
 
     const mouseMove = (event) => {
       const currentEvent = event.type === 'touchmove' ? event.touches[0] : event;
@@ -91,11 +100,7 @@ export const Categories = () => {
 
     list.addEventListener('mouseleave', mouseUp);
 
-    window.addEventListener('resize', () => {
-      if (rightBorderDetected()) {
-        list.style.marginLeft = `${getDiffBetweenWrapperAndList()}px`;
-      }
-    }, false);
+    window.addEventListener('resize', adjustList, false);
   }, []);
 
   const styles = useStyles();
