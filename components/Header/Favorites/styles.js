@@ -7,7 +7,7 @@ export const useStyles = makeStyles({
   icon: {
     marginRight: 7,
     width: 28,
-    height: 'auto'
+    height: 'auto',
   },
   link: {
     display: 'flex',

@@ -1,11 +1,11 @@
 import React from 'react';
 
+import { Categories } from './Categories';
 import { Favorites } from './Favorites';
 import { History } from './History';
 import { Logo } from './Logo';
 import { MainSearch } from './Search/MainSearch';
 import { useStyles } from './styles';
-import { Categories } from './Categories';
 
 export const Header = () => {
   const styles = useStyles();

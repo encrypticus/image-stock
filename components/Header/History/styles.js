@@ -4,10 +4,10 @@ export const useStyles = makeStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
-    marginLeft: 20
+    marginLeft: 20,
   },
   icon: {
-    marginRight: 7
+    marginRight: 7,
   },
   button: {
     padding: 0,
@@ -15,11 +15,11 @@ export const useStyles = makeStyles({
     textTransform: 'none',
     fontWeight: 'normal',
     '& .MuiSvgIcon-root': {
-      fontSize: 28
-    }
+      fontSize: 28,
+    },
   },
   label: {
     fontSize: 18,
-    color: '#fff'
-  }
+    color: '#fff',
+  },
 });

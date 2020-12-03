@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { InputBase } from '@material-ui/core';
+
 import { useStyles } from './styles';
 
 export const MainSearch = () => {
@@ -10,7 +12,7 @@ export const MainSearch = () => {
       <InputBase
         classes={{
           root: styles.root,
-          input: styles.input
+          input: styles.input,
         }}
         placeholder="Поиск"
       />

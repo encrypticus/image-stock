@@ -8,6 +8,6 @@ export const useStyles = makeStyles({
   inner: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 30
+    marginBottom: 30,
   },
 });

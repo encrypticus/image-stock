@@ -19,8 +19,8 @@ export const useStyles = makeStyles({
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'contain',
       transform: 'translateX(25%)',
-      transformOrigin: 'center center'
-    }
+      transformOrigin: 'center center',
+    },
   },
   input: {
     position: 'relative',
@@ -30,7 +30,7 @@ export const useStyles = makeStyles({
     textAlign: 'center',
     '&::placeholder': {
       color: '#fff',
-      opacity: 1
-    }
-  }
+      opacity: 1,
+    },
+  },
 });
