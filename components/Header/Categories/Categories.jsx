@@ -1,33 +1,21 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-shadow */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-return-assign */
+
 import React, { useEffect, useRef } from 'react';
-import { List, ListItem, ListItemText, Box } from '@material-ui/core';
+
+import {
+  List, ListItem, ListItemText, Box,
+} from '@material-ui/core';
+
+import { navMenuData } from '../../../constants/nav-menu-data';
+import classes from './style.module.scss';
 import { useStyles } from './styles';
-import { log } from '../../../utils/logger';
 
 export const Categories = () => {
   const wrapperRef = useRef(null);
   const listRef = useRef(null);
-  const data = [
-    'Backgrounds',
-    'Fashion',
-    'Nature',
-    'Science',
-    'Education',
-    'Feelings',
-    'Health',
-    'People',
-    'Religion',
-    'Places',
-    'Animals',
-    'Industry',
-    'Computer',
-    'Food',
-    'Sports',
-    'Transportation',
-    'Travel',
-    'Buildings',
-    'Business',
-    'Music'
-  ];
 
   useEffect(() => {
     let pointX = 0;
@@ -38,120 +26,91 @@ export const Categories = () => {
 
     list.style.marginLeft = '0px';
 
-    const rightLimitReached = () => {
-      return list.getBoundingClientRect().right <= listWrapper.getBoundingClientRect().right;
-    };
+    const rightBorderDetected = () => list.getBoundingClientRect().right <= listWrapper.getBoundingClientRect().right;
 
-    const leftLimitReached = () => {
-      return parseInt(list.style.marginLeft) > 0;
-    };
+    const leftBorderDetected = () => parseInt(list.style.marginLeft, 10) >= 0;
 
-    const swipeLeft = (x1, x2) => {
-      return x1 > x2;
-    };
+    const swipeLeft = (x1, x2) => x1 > x2;
 
-    const getDiff = () => {
-      return listWrapper.getBoundingClientRect().width - list.getBoundingClientRect().width;
-    };
+    const swipeRight = (x1, x2) => x1 < x2;
 
-    listWrapper.addEventListener('mousedown', function (event) {
-      isMouseDown = true;
-      pointX = event.clientX;
-    });
+    const getDiffBetweenWrapperAndList = () => listWrapper.getBoundingClientRect().width - list.getBoundingClientRect().width;
 
-    listWrapper.addEventListener('touchstart', function (event) {
-      const touch = event.touches[0];
-      isMouseDown = true;
-      pointX = touch.clientX;
-    });
-
-    listWrapper.addEventListener('mouseup', function () {
-      isMouseDown = false;
-    });
-
-    listWrapper.addEventListener('touchend', function (event) {
-      const touch = event.touches[0];
-
-      if (rightLimitReached() && swipeLeft(pointX, touch.clientX)) {
-        list.style.marginLeft = `${getDiff()}px`;
+    const bordersDetected = (event, margin, pointX) => {
+      if (leftBorderDetected() && swipeRight(pointX, event.clientX)) {
+        list.style.marginLeft = 0;
+        return true;
       }
 
-      isMouseDown = false;
-    });
+      if (rightBorderDetected() && swipeLeft(pointX, event.clientX)) {
+        list.style.marginLeft = `${getDiffBetweenWrapperAndList()}px`;
+        return true;
+      }
+      list.style.marginLeft = `${margin}px`;
 
-    listWrapper.addEventListener('mousemove', function (event) {
+      return false;
+    };
+
+    const toggleListMask = () => {
+      rightBorderDetected() ? listWrapper.classList.remove('style_masked__GHKHj') : listWrapper.classList.add('style_masked__GHKHj');
+    };
+
+    const mouseDown = (event) => {
+      isMouseDown = true;
+      if (event.type === 'touchstart') pointX = event.touches[0].clientX;
+      else pointX = event.clientX;
+    };
+
+    const mouseUp = () => isMouseDown = false;
+
+    const mouseMove = (event) => {
+      const currentEvent = event.type === 'touchmove' ? event.touches[0] : event;
+
       if (isMouseDown) {
-        let value = pointX - event.clientX;
-        let margin = parseInt(list.style.marginLeft) - value;
+        const value = pointX - currentEvent.clientX;
+        const margin = parseInt(list.style.marginLeft, 10) - value;
+        toggleListMask();
 
-        if (leftLimitReached()) list.style.marginLeft = 0;
-        else {
-          if (rightLimitReached() && swipeLeft(pointX, event.clientX)) {
-            list.style.marginLeft = `${getDiff()}px`;
-            return;
-          } else {
-            list.style.marginLeft = `${margin}px`
-          }
-        }
+        if (bordersDetected(currentEvent, margin, pointX)) return;
 
-        pointX = event.clientX;
+        pointX = currentEvent.clientX;
+      }
+    };
 
-        if (leftLimitReached()) list.style.marginLeft = 0;
-        else {
-          if (rightLimitReached() && swipeLeft(pointX, event.clientX)) {
-            list.style.marginLeft = `${getDiff()}px`;
-            return;
-          } else {
-            list.style.marginLeft = `${margin}px`
-          }
-        }
+    listWrapper.addEventListener('mousedown', mouseDown);
+
+    listWrapper.addEventListener('touchstart', mouseDown);
+
+    listWrapper.addEventListener('mouseup', mouseUp);
+
+    listWrapper.addEventListener('touchend', mouseUp);
+
+    listWrapper.addEventListener('mousemove', mouseMove, false);
+
+    listWrapper.addEventListener('touchmove', mouseMove, false);
+
+    list.addEventListener('mouseleave', mouseUp);
+
+    window.addEventListener('resize', () => {
+      if (rightBorderDetected()) {
+        list.style.marginLeft = `${getDiffBetweenWrapperAndList()}px`;
       }
     }, false);
-
-    listWrapper.addEventListener('touchmove', function (event) {
-      const touch = event.touches[0];
-      if (isMouseDown) {
-        let value = pointX - touch.clientX;
-        let margin = parseInt(list.style.marginLeft) - value;
-
-        if (leftLimitReached()) list.style.marginLeft = 0;
-        else {
-          if (rightLimitReached() && swipeLeft(pointX, touch.clientX)) {
-            list.style.marginLeft = `${getDiff()}px`;
-            return;
-          } else {
-            list.style.marginLeft = `${margin}px`
-          }
-        }
-
-        pointX = touch.clientX;
-
-        if (leftLimitReached()) list.style.marginLeft = 0;
-        else {
-          if (rightLimitReached() && swipeLeft(pointX, touch.clientX)) {
-            list.style.marginLeft = `${getDiff()}px`;
-            return;
-          } else {
-            list.style.marginLeft = `${margin}px`
-          }
-        }
-      }
-    }, false);
-
-    list.addEventListener('mouseleave', function (event) {
-      isMouseDown = false;
-    })
   }, []);
 
   const styles = useStyles();
 
   return (
-    <Box className={styles.wrapper} ref={wrapperRef}>
+    <Box className={`${styles.wrapper} ${classes.masked}`} ref={wrapperRef}>
       <List className={styles.root} ref={listRef}>
         {
-          data.map((item, index) => (
+          navMenuData.map((item, index) => (
             <ListItem classes={{ root: styles.item }} button key={index}>
-              <ListItemText primary={item} key={index}/>
+              <ListItemText
+                primary={item}
+                key={index}
+                classes={{ primary: styles.label }}
+              />
             </ListItem>
           ))
         }
