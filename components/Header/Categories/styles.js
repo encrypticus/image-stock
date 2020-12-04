@@ -10,13 +10,13 @@ export const useStyles = makeStyles((theme) => ({
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       position: 'static',
-      width: 'auto'
-    }
+      width: 'auto',
+    },
   },
   item: {
     [theme.breakpoints.down(376)]: {
-      width: 'auto'
-    }
+      width: 'auto',
+    },
   },
   label: {
     fontFamily: 'inherit',
@@ -32,7 +32,7 @@ export const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     [theme.breakpoints.down(376)]: {
-      overflow: 'visible'
-    }
+      overflow: 'visible',
+    },
   },
 }));

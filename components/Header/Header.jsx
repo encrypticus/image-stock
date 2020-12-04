@@ -46,7 +46,7 @@ export const Header = () => {
 
     window.addEventListener('resize', () => {
       header.style.maxHeight = `${header.scrollHeight}px`;
-    })
+    });
   }, []);
 
   useEffect(() => {
