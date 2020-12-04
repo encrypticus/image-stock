@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
       bottom: -8,
       width: '62.5%',
       height: 1,
-      backgroundImage: 'url(/images/Line.png)',
+      backgroundImage: 'url(/images/line.png)',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'contain',
       transform: 'translateX(25%)',
