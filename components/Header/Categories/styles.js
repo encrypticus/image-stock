@@ -11,6 +11,7 @@ export const useStyles = makeStyles((theme) => ({
       justifyContent: 'space-around',
       position: 'static',
       width: 'auto',
+      marginLeft: '0px !important',
     },
   },
   item: {
