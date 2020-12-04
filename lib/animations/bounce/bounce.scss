@@ -1,0 +1,21 @@
+@import '~animate.css/source/bouncing_entrances/bounceIn.css';
+@import '~animate.css/source/back_exits/backOutUp.css';
+
+.bounce {
+  &-enter {
+    animation: bounceIn .5s;
+  }
+
+  &-enter-active {
+    animation: bounceIn .5s;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    animation: backOutUp .5s;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,21 @@
+@import '~animate.css/source/zooming_entrances/zoomIn.css';
+@import '~animate.css/source/zooming_exits/zoomOut.css';
+
+.zoom {
+  &-enter {
+    animation: zoomIn .5s;
+  }
+
+  &-enter-active {
+    animation: zoomIn .5s;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    animation: zoomOut .5s;
+  }
+}
