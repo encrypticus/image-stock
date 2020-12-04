@@ -6,9 +6,17 @@ export const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: 0,
     left: 0,
+    [theme.breakpoints.down(376)]: {
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      position: 'static',
+      width: 'auto'
+    }
   },
   item: {
-
+    [theme.breakpoints.down(376)]: {
+      width: 'auto'
+    }
   },
   label: {
     fontFamily: 'inherit',
@@ -23,5 +31,8 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down(801)]: {
       width: '100%',
     },
+    [theme.breakpoints.down(376)]: {
+      overflow: 'visible'
+    }
   },
 }));

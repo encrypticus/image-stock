@@ -1,3 +1,6 @@
 .masked {
   mask-image: linear-gradient(to left, transparent -4%, black 60%);
+  @media (max-width: 376px) {
+    mask-image: none;
+  }
 }

@@ -43,6 +43,10 @@ export const Header = () => {
       lastPageYOffset = pageYOffset;
       setYOffset(pageYOffset);
     });
+
+    window.addEventListener('resize', () => {
+      header.style.maxHeight = `${header.scrollHeight}px`;
+    })
   }, []);
 
   useEffect(() => {
