@@ -1,0 +1,1 @@
+export { SmallSearch } from './SmallSearch';
