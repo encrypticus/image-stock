@@ -54,6 +54,7 @@
     "react/forbid-prop-types": "off",
     "max-len": "off",
     "no-restricted-globals": "off",
+    "no-unused-expressions": "off",
     "import/order": [
       "error",
       {
