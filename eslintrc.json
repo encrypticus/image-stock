@@ -36,6 +36,7 @@
     "react",
     "react-hooks"
   ],
+  "ignorePatterns": ["**/*.scss"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
@@ -55,6 +56,8 @@
     "max-len": "off",
     "no-restricted-globals": "off",
     "no-unused-expressions": "off",
+    "camelcase": "off",
+    "consistent-return": "off",
     "import/order": [
       "error",
       {
