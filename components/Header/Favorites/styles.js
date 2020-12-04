@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    marginLeft: 'auto',
+    marginLeft: 20,
   },
   icon: {
     marginRight: 7,

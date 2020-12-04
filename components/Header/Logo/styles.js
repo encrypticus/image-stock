@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    marginRight: 'auto',
     alignItems: 'center',
     fontSize: 24,
     fontWeight: 700,
