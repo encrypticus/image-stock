@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./components/** ./pages/** -c ./eslintrc.json --ext js,jsx",
-    "lint-fix": "eslint ./components/** ./pages/** -c ./eslintrc.json --fix --ext js,jsx",
-    "eslint-watch": "esw --watch components/** pages/** -c ./eslintrc.json --fix --ext js,jsx"
+    "lint": "eslint ./components/** ./pages/** ./lib/** ./utils/** -c ./eslintrc.json --ext js,jsx",
+    "lint-fix": "eslint ./components/** ./pages/** ./lib/** ./utils/** -c ./eslintrc.json --fix --ext js,jsx",
+    "eslint-watch": "esw --watch ./components/** ./pages/** ./lib/** ./utils/** -c ./eslintrc.json --fix --ext js,jsx"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -16,6 +16,7 @@
     "animate.css": "^4.1.1",
     "firebase": "^8.0.0",
     "next": "9.5.5",
+    "pixabay-api": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
