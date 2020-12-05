@@ -26,6 +26,13 @@ a {
   box-sizing: border-box;
 }
 
+main {
+  $func: cubic-bezier(0.16, 1, 0.3, 1);
+  height: 600px;
+  background-color: lightsalmon;
+  transition: margin-top .2s $func;
+}
+
 .page-container {
   max-width: 1920px;
   min-width: 320px;

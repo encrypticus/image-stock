@@ -10,7 +10,7 @@ import { SmallSearch } from './Search/SmallSearch';
 import classes from './style.module.scss';
 import { useStyles } from './styles';
 
-export const Header = () => {
+export const Header = ({ setMarginTop }) => {
   const styles = useStyles();
   const [scroll, scrollTo] = useState('');
   const [yOffset, setYOffset] = useState(0);
@@ -18,9 +18,20 @@ export const Header = () => {
   const [headerReduced, reduceHeader] = useState(false);
   const headerRef = useRef(null);
 
+  const getMarginTop = (marginTop) => {
+    setMarginTop(marginTop);
+  };
+
   const toggleHeader = (reduce) => {
-    const { current: header } = headerRef;
+    const { current: header, current: { scrollHeight } } = headerRef;
     reduce ? header.classList.add(classes.scrolledDown) : header.classList.remove(classes.scrolledDown);
+    if (reduce) {
+      header.classList.add(classes.scrolledDown);
+      getMarginTop(80);
+    } else {
+      header.classList.remove(classes.scrolledDown);
+      setTimeout(() => getMarginTop(header.scrollHeight), 500);
+    }
   };
 
   useEffect(() => {
@@ -31,6 +42,7 @@ export const Header = () => {
     let lastPageYOffset = 0;
     const { current: header, current: { scrollHeight } } = headerRef;
     header.style.maxHeight = `${scrollHeight}px`;
+    getMarginTop(scrollHeight);
 
     const pageScrolledUp = () => lastPageYOffset > pageYOffset;
 
@@ -46,7 +58,9 @@ export const Header = () => {
 
     window.addEventListener('resize', () => {
       header.style.maxHeight = `${header.scrollHeight}px`;
+      setTimeout(() => getMarginTop(header.scrollHeight), 500);
     });
+
   }, []);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -9,16 +9,30 @@ import { Header } from '../components/Header';
 import PixabayConnector, { pixabayConnector } from '../utils/pixabay-connector';
 
 export default function Home({ images }) {
+  const mainRef = useRef(null);
+  const main = mainRef.current;
+  const [marginTop, setMarginTop] = useState(0);
+
   useEffect(() => {
     console.log(images);
   }, [images]);
 
+  useEffect(() => {
+    main && (main.style.marginTop = `${marginTop}px`);
+  }, [marginTop]);
+
   return (
     <div className="page-container">
       <PageHead title="Главная" />
-      <Header />
+      <Header
+        setMarginTop={setMarginTop}
+      />
 
-      <main />
+      <main ref={mainRef}>
+        <div className="inner-container">
+          <h1>Hello image stock!!!</h1>
+        </div>
+      </main>
 
       <footer />
     </div>
