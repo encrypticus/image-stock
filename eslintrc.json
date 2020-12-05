@@ -58,6 +58,8 @@
     "no-unused-expressions": "off",
     "camelcase": "off",
     "consistent-return": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "no-shadow": "off",
     "import/order": [
       "error",
       {
