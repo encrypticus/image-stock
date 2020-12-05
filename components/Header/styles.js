@@ -5,6 +5,7 @@ const func = 'cubic-bezier(0.16, 1, 0.3, 1)'; // cubic-bezier(0.33, 1, 0.68, 1)
 export const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
+    zIndex: 99,
     width: '100%',
     backgroundColor: '#000',
     padding: '90px 20px',

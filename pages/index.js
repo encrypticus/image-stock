@@ -6,9 +6,12 @@ import PropTypes from 'prop-types';
 
 import { PageHead } from '../components/Head';
 import { Header } from '../components/Header';
-import PixabayConnector, { pixabayConnector } from '../utils/pixabay-connector';
+import { ImageList } from '../components/ImageList';
+import { pixabayConnector } from '../utils/pixabay-connector';
+import { useStyles } from './styles';
 
 export default function Home({ images }) {
+  const styles = useStyles();
   const mainRef = useRef(null);
   const main = mainRef.current;
   const [marginTop, setMarginTop] = useState(0);
@@ -29,8 +32,10 @@ export default function Home({ images }) {
       />
 
       <main ref={mainRef}>
-        <div className="inner-container">
-          <h1>Hello image stock!!!</h1>
+        <div className={`inner-container ${styles.homePageContainer}`}>
+          <ImageList
+            items={images}
+          />
         </div>
       </main>
 
@@ -44,12 +49,9 @@ Home.propTypes = {
 };
 
 export async function getStaticProps() {
-  const { searchSettings: { perPage: { query: per_page } } } = PixabayConnector;
+  // const { searchSettings: { perPage: { query: per_page } } } = PixabayConnector;
 
-  const images = await pixabayConnector.searchImages({
-    query: 'flowers',
-    options: { [per_page]: 7 },
-  });
+  const images = await pixabayConnector.searchImages();
 
   return {
     props: {

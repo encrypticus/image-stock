@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { Zoom } from '../../lib/animations';
 import { Categories } from './Categories';
 import { Favorites } from './Favorites';
@@ -23,14 +25,14 @@ export const Header = ({ setMarginTop }) => {
   };
 
   const toggleHeader = (reduce) => {
-    const { current: header, current: { scrollHeight } } = headerRef;
+    const { current: header } = headerRef;
     reduce ? header.classList.add(classes.scrolledDown) : header.classList.remove(classes.scrolledDown);
     if (reduce) {
       header.classList.add(classes.scrolledDown);
       getMarginTop(80);
     } else {
       header.classList.remove(classes.scrolledDown);
-      setTimeout(() => getMarginTop(header.scrollHeight), 500);
+      setTimeout(() => getMarginTop(header.scrollHeight), 600);
     }
   };
 
@@ -58,13 +60,12 @@ export const Header = ({ setMarginTop }) => {
 
     window.addEventListener('resize', () => {
       header.style.maxHeight = `${header.scrollHeight}px`;
-      setTimeout(() => getMarginTop(header.scrollHeight), 500);
+      setTimeout(() => getMarginTop(header.scrollHeight), 600);
     });
-
   }, []);
 
   useEffect(() => {
-    if (scroll === 'down' && yOffset > 500) {
+    if (scroll === 'down' && yOffset > 200) {
       reduceHeader(true);
       showSearch(true);
     } else if (scroll === 'up' && yOffset === 0) {
@@ -90,4 +91,8 @@ export const Header = ({ setMarginTop }) => {
       <Categories />
     </header>
   );
+};
+
+Header.propTypes = {
+  setMarginTop: PropTypes.func.isRequired,
 };
