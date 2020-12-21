@@ -109,7 +109,7 @@ export const ImageList = ({ mediaData }) => {
         className={`${styles.root} grid`}
         ref={listRef}
       >
-        <li className='grid-sizer'></li> /*need for Masonry.js*/
+        {/*<li className='grid-sizer'></li> need for Masonry.js*/}
         {renderImageList(hits)}
       </List>
       {
