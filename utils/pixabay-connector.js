@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-
-import { authenticate } from 'pixabay-api';
+import { authenticate } from '../utils/pixabay';
 
 import { API_KEY } from '../constants/api-keys/pixabay-key';
 
@@ -23,6 +22,12 @@ export default class PixabayConnector {
         photo: 'photo',
         illustration: 'illustration',
         vector: 'vector',
+      },
+      videoType: {
+        query: 'video_type',
+        all: 'all',
+        film: 'film',
+        animation: 'animation',
       },
       orientation: {
         query: 'orientation',
@@ -75,23 +80,28 @@ export default class PixabayConnector {
         black: 'black',
         brown: 'brown',
       },
+      page: {
+        query: 'page',
+      },
       perPage: {
         query: 'per_page',
       },
     };
   }
 
-  searchImages = async ({ query, options } = { query: '', options: {} }) => {
+  searchMedia = async ({ query, options, mediaType } = { query: '', options: {}, mediaType: 'image' }) => {
     try {
-      return await searchImages(query, options);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-
-  searchVideos = async ({ query, options } = { query: '', options: {} }) => {
-    try {
-      return await searchVideos(query, options);
+      switch (mediaType) {
+        case 'image': {
+          return await searchImages(query, options);
+        }
+        case 'video': {
+          return await searchVideos(query, options);
+        }
+        default: {
+          return await searchImages(query, options);
+        }
+      }
     } catch (e) {
       console.log(e.message);
     }

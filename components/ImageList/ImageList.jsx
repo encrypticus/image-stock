@@ -1,32 +1,127 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { List } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import Router, { useRouter } from 'next/router';
+import { List } from '@material-ui/core';
+import { MetroSpinner } from 'react-spinners-kit';
 
+import { add } from '../../redux/reducers/media-data-reducer';
 import { ImageListItem } from './ImageListItem';
 import { useStyles } from './styles';
 
-export const ImageList = ({ items }) => {
+export const ImageList = ({ mediaData }) => {
   const styles = useStyles();
-  const { hits } = items;
+  const listRef = useRef(null);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const { mediaDataReducer: { mediaData: { hits } } } = useSelector(state => state);
+  const dispatch = useDispatch();
+  const startLoading = () => setLoading(true);
+  const stopLoading = () => setLoading(false);
+  // let msnry;
+  // const [masonry, setMasonry] = useState(null);
 
-  const renderImageList = (items) => (
-    items.map(({ webformatURL, tags, id }) => (
+  useEffect(() => {
+    if (mediaData) {
+      if (mediaData.error) {
+        console.log(mediaData.error);
+      } else {
+        dispatch(add(mediaData.data));
+      }
+    }
+  }, [mediaData]);
+
+  useEffect(() => {
+    Router.events.on('routeChangeStart', startLoading);
+    Router.events.on('routeChangeComplete', stopLoading);
+    return () => {
+      Router.events.off('routeChangeStart', startLoading);
+      Router.events.off('routeChangeComplete', stopLoading);
+    }
+  }, []);
+
+  const handleScroll = () => {
+    const lastMediaItemLoaded = document.querySelector('.grid > .grid-item:last-child');
+
+    if (lastMediaItemLoaded) {
+      const lastMediaItemLoadedOffset = lastMediaItemLoaded.offsetTop + lastMediaItemLoaded.clientHeight;
+      const pageOffset = window.pageYOffset + window.innerHeight;
+
+      if (pageOffset > lastMediaItemLoadedOffset && !loading) {
+        if (mediaData.currentPage < mediaData.maxPage) {
+          const query = router.query;
+          const q = parseInt(mediaData.currentPage) + 1;
+          query.page = String(q);
+          router.push({
+            pathname: router.pathname,
+            query: query,
+          });
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  });
+
+  const renderImageList = (mediaList) => (
+    mediaList.map(({ webformatURL, tags, id }, index) => (
       <ImageListItem
-        key={id}
+        key={`${id}#${index}`}
         src={webformatURL}
         tags={tags}
       />
     ))
   );
 
+  // useEffect(() => {
+  //   if (listRef.current) {
+  //     msnry = new Masonry(listRef.current, {
+  //       itemSelector: '.grid-item',
+  //       gutter: 20,
+  //       columnWidth: '.grid-sizer',
+  //       percentPosition: true,
+  //       transitionDuration: 0,
+  //     });
+  //     setMasonry(msnry);
+  //     imagesLoaded( listRef.current ).on( 'progress', function() {
+  //       // layout Masonry after each image loads
+  //       msnry.layout();
+  //     });
+  //   }
+  // }, [hits]);
+  //
+  // useEffect(() => {
+  //   if (masonry) {
+  //     imagesLoaded(listRef.current).on('progress', function () {
+  //       masonry.reloadItems();
+  //       masonry.layout();
+  //     });
+  //   }
+  // }, [masonry]);
+
   return (
-    <List className={styles.root}>
-      {renderImageList(hits)}
-    </List>
+    <>
+      <List
+        className={`${styles.root} grid`}
+        ref={listRef}
+      >
+        <li className='grid-sizer'></li> /*need for Masonry.js*/
+        {renderImageList(hits)}
+      </List>
+      {
+        loading &&
+        <div className="spinner-container">
+          <MetroSpinner color="#83838A" size={60} />
+        </div>
+      }
+    </>
   );
 };
 
 ImageList.propTypes = {
-  items: PropTypes.object.isRequired,
+  mediaData: PropTypes.object.isRequired,
 };

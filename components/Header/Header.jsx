@@ -26,10 +26,9 @@ export const Header = ({ setMarginTop }) => {
 
   const toggleHeader = (reduce) => {
     const { current: header } = headerRef;
-    reduce ? header.classList.add(classes.scrolledDown) : header.classList.remove(classes.scrolledDown);
     if (reduce) {
       header.classList.add(classes.scrolledDown);
-      getMarginTop(80);
+      setTimeout(() => getMarginTop(80), 600);
     } else {
       header.classList.remove(classes.scrolledDown);
       setTimeout(() => getMarginTop(header.scrollHeight), 600);

@@ -1,24 +1,18 @@
-/* eslint-disable no-console */
-
 import { useEffect, useRef, useState } from 'react';
-
-import PropTypes from 'prop-types';
 
 import { PageHead } from '../components/Head';
 import { Header } from '../components/Header';
 import { ImageList } from '../components/ImageList';
-import { pixabayConnector } from '../utils/pixabay-connector';
 import { useStyles } from './styles';
 
-export default function Home({ images }) {
+export default function Home({ mediaData }) {
   const styles = useStyles();
+
   const mainRef = useRef(null);
   const main = mainRef.current;
-  const [marginTop, setMarginTop] = useState(0);
+  const containerRef = useRef(null);
 
-  useEffect(() => {
-    console.log(images);
-  }, [images]);
+  const [marginTop, setMarginTop] = useState(0);
 
   useEffect(() => {
     main && (main.style.marginTop = `${marginTop}px`);
@@ -32,9 +26,12 @@ export default function Home({ images }) {
       />
 
       <main ref={mainRef}>
-        <div className={`inner-container ${styles.homePageContainer}`}>
+        <div
+          className={`inner-container ${styles.homePageContainer}`}
+          ref={containerRef}
+        >
           <ImageList
-            items={images}
+            mediaData={mediaData}
           />
         </div>
       </main>
@@ -42,20 +39,21 @@ export default function Home({ images }) {
       <footer />
     </div>
   );
-}
-
-Home.propTypes = {
-  images: PropTypes.object.isRequired,
 };
 
-export async function getStaticProps() {
-  // const { searchSettings: { perPage: { query: per_page } } } = PixabayConnector;
+export async function getServerSideProps({ query }) {
+  const page = parseInt(query.page) || 1;
+  let mediaData = null;
 
-  const images = await pixabayConnector.searchImages();
+  try {
+    const res = await fetch(`http://localhost:3000/api/pages?page=${page}`);
+    if (res.status !== 200) {
+      throw new Error('Failed to fetch');
+    }
+    mediaData = await res.json();
+  } catch (e) {
+    mediaData = { error: { message: e.message } };
+  }
 
-  return {
-    props: {
-      images,
-    },
-  };
+  return { props: { mediaData } };
 }

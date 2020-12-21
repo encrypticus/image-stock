@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { memo, useEffect } from 'react';
 
 import { ListItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
 
-export const ImageListItem = (props) => {
+export const ImageListItem = memo((props) => {
   const styles = useStyles();
-  const { src, tags } = props;
+  const { src, tags, width, height } = props;
 
   return (
-    <ListItem className={styles.root}>
+    <ListItem className={`${styles.root} grid-item`}>
       <img
         className={styles.img}
         src={src}
@@ -18,7 +18,7 @@ export const ImageListItem = (props) => {
       />
     </ListItem>
   );
-};
+});
 
 ImageListItem.propTypes = {
   src: PropTypes.string.isRequired,

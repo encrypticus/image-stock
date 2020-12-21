@@ -40,3 +40,18 @@ main {
   max-width: 1480px;
   margin: auto;
 }
+
+#bottom-boundary {
+  height: 2px;
+  background-color: red;
+  margin-top: 5px;
+}
+
+.grid-sizer {
+  width: 32.1621%;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+}

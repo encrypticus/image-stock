@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
     zIndex: 99,
     width: '100%',
     backgroundColor: '#000',
-    padding: '90px 20px',
+    padding: '45px 20px',
     overflow: 'hidden',
     transition: `max-height .5s ${func}, padding-bottom .5s ${func}, padding-top .5s ${func}`,
     [theme.breakpoints.down(641)]: {
