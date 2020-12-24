@@ -42,11 +42,17 @@ export default function Home({ mediaData }) {
 };
 
 export async function getServerSideProps({ query }) {
-  const page = parseInt(query.page) || 1;
+  const { page = 1 } = query;
   let mediaData = null;
 
   try {
-    const res = await fetch(`http://localhost:3000/api/pages?page=${page}`);
+    const res = await fetch('http://localhost:3000/api/pages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ...query, page }),
+    });
     if (res.status !== 200) {
       throw new Error('Failed to fetch');
     }

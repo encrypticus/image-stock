@@ -6,6 +6,7 @@ import Router, { useRouter } from 'next/router';
 import { List } from '@material-ui/core';
 import { MetroSpinner } from 'react-spinners-kit';
 
+import { getQueryString } from '../../utils/query-string';
 import { add } from '../../redux/reducers/media-data-reducer';
 import { ImageListItem } from './ImageListItem';
 import { useStyles } from './styles';
@@ -50,13 +51,18 @@ export const ImageList = ({ mediaData }) => {
 
       if (pageOffset > lastMediaItemLoadedOffset && !loading) {
         if (mediaData.currentPage < mediaData.maxPage) {
-          const query = router.query;
-          const q = parseInt(mediaData.currentPage) + 1;
-          query.page = String(q);
-          router.push({
-            pathname: router.pathname,
-            query: query,
-          });
+          const nextPage = parseInt(mediaData.currentPage) + 1;
+
+          const settings = {
+            query: '',
+            options: { page: nextPage },
+            mediaType: 'image'
+          };
+
+          const optionsQueryString = getQueryString(settings.options);
+          const queryString = `${router.pathname}?query=${settings.query}&mediaType=${settings.mediaType}${optionsQueryString}`;
+
+          router.push(queryString);
         }
       }
     }

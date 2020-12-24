@@ -1,19 +1,18 @@
 import { pixabayConnector } from '../../utils/pixabay-connector';
 
 export default async (req, res) => {
-  console.log(req.query.page);
-  const currentPage = req.query.page || 1;
+  const { query, mediaType, ...options } = req.body;
   const perPage = 20;
 
   try {
-    const data = await pixabayConnector.searchMedia({ options: { 'page': currentPage } });
+    const data = await pixabayConnector.searchMedia({ query, options, mediaType });
     const { totalHits } = data;
-    const maxPage = totalHits / perPage;
+    const maxPage = Math.ceil(totalHits / perPage);
 
     res.statusCode = 200;
     res.json({
       data,
-      currentPage,
+      currentPage: req.body.page,
       maxPage,
     });
   } catch (e) {
