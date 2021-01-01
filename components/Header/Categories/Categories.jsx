@@ -2,20 +2,25 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-return-assign */
-
 import React, { useEffect, useRef } from 'react';
 
 import {
   List, ListItem, ListItemText, Box,
 } from '@material-ui/core';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 
 import { navMenuData } from '../../../constants/nav-menu-data';
+import { resetState, changeOptions } from '../../../redux/reducers/media-data-reducer';
+import { getQueryString } from '../../../utils/query-string';
 import classes from './style.module.scss';
 import { useStyles } from './styles';
 
 export const Categories = () => {
   const wrapperRef = useRef(null);
   const listRef = useRef(null);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     let pointX = 0;
@@ -105,6 +110,20 @@ export const Categories = () => {
 
   const styles = useStyles();
 
+  const selectCategory = (category) => {
+    dispatch(resetState());
+    dispatch(changeOptions({ category: category.toLowerCase() }));
+
+    const settings = {
+      options: { category: category.toLowerCase() },
+      mediaType: 'image',
+    };
+
+    const optionsQueryString = getQueryString(settings.options);
+    const queryString = `${router.pathname}?mediaType=${settings.mediaType}${optionsQueryString}`;
+    router.push(queryString);
+  };
+
   return (
     <Box className={`${styles.wrapper} ${classes.masked}`} ref={wrapperRef}>
       <List className={styles.root} ref={listRef}>
@@ -115,6 +134,7 @@ export const Categories = () => {
                 primary={item}
                 key={index}
                 classes={{ primary: styles.label }}
+                onClick={() => selectCategory(item)}
               />
             </ListItem>
           ))

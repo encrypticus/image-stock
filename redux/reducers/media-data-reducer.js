@@ -6,7 +6,9 @@ const initialState = {
     totalHits: '',
     hits: [],
   },
-  pageNumber: 1,
+  options: {},
+  query: '',
+  mediaType: 'image',
 };
 
 const imagesReducer = createSlice({
@@ -20,10 +22,16 @@ const imagesReducer = createSlice({
       state.mediaData.totalHits = totalHits;
       state.mediaData.hits = [...currentHits, ...hits];
     },
-    getNextPage(state, action) {
-       state.pageNumber < 24 && state.pageNumber++;
+    resetState(state) {
+      state.mediaData.total = '';
+      state.mediaData.totalHits = '';
+      state.mediaData.hits = [];
+      state.options = {};
+    },
+    changeOptions(state, { payload }) {
+      state.options = { ...state.options, ...payload };
     },
   },
 });
 
-export const { reducer: mediaDataReducer, actions: { add, getNextPage } } = imagesReducer;
+export const { reducer: mediaDataReducer, actions: { add, resetState, changeOptions } } = imagesReducer;

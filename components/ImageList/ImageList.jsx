@@ -1,13 +1,15 @@
+/* eslint-disable no-console */
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useRef, useState } from 'react';
 
+import { List } from '@material-ui/core';
+import Router, { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import Router, { useRouter } from 'next/router';
-import { List } from '@material-ui/core';
 import { MetroSpinner } from 'react-spinners-kit';
 
+import { add, changeOptions } from '../../redux/reducers/media-data-reducer';
 import { getQueryString } from '../../utils/query-string';
-import { add } from '../../redux/reducers/media-data-reducer';
 import { ImageListItem } from './ImageListItem';
 import { useStyles } from './styles';
 
@@ -16,7 +18,7 @@ export const ImageList = ({ mediaData }) => {
   const listRef = useRef(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { mediaDataReducer: { mediaData: { hits } } } = useSelector(state => state);
+  const { mediaDataReducer: { mediaData: { hits }, mediaType: storeMediaType, options } } = useSelector((state) => state);
   const dispatch = useDispatch();
   const startLoading = () => setLoading(true);
   const stopLoading = () => setLoading(false);
@@ -34,12 +36,16 @@ export const ImageList = ({ mediaData }) => {
   }, [mediaData]);
 
   useEffect(() => {
+    dispatch(changeOptions(mediaData.options));
+  }, []);
+
+  useEffect(() => {
     Router.events.on('routeChangeStart', startLoading);
     Router.events.on('routeChangeComplete', stopLoading);
     return () => {
       Router.events.off('routeChangeStart', startLoading);
       Router.events.off('routeChangeComplete', stopLoading);
-    }
+    };
   }, []);
 
   const handleScroll = () => {
@@ -51,16 +57,15 @@ export const ImageList = ({ mediaData }) => {
 
       if (pageOffset > lastMediaItemLoadedOffset && !loading) {
         if (mediaData.currentPage < mediaData.maxPage) {
-          const nextPage = parseInt(mediaData.currentPage) + 1;
+          const nextPage = parseInt(mediaData.currentPage, 10) + 1;
 
           const settings = {
-            query: '',
-            options: { page: nextPage },
-            mediaType: 'image'
+            options: { page: nextPage, ...options },
+            mediaType: storeMediaType,
           };
 
           const optionsQueryString = getQueryString(settings.options);
-          const queryString = `${router.pathname}?query=${settings.query}&mediaType=${settings.mediaType}${optionsQueryString}`;
+          const queryString = `${router.pathname}?mediaType=${settings.mediaType}${optionsQueryString}`;
 
           router.push(queryString);
         }
@@ -115,14 +120,16 @@ export const ImageList = ({ mediaData }) => {
         className={`${styles.root} grid`}
         ref={listRef}
       >
-        {/*<li className='grid-sizer'></li> need for Masonry.js*/}
+        {/* <li className='grid-sizer'></li> need for Masonry.js */}
         {renderImageList(hits)}
       </List>
       {
-        loading &&
+        loading
+        && (
         <div className="spinner-container">
           <MetroSpinner color="#83838A" size={60} />
         </div>
+        )
       }
     </>
   );

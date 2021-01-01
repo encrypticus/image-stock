@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { PageHead } from '../components/Head';
 import { Header } from '../components/Header';
 import { ImageList } from '../components/ImageList';
@@ -39,6 +41,10 @@ export default function Home({ mediaData }) {
       <footer />
     </div>
   );
+}
+
+Home.propTypes = {
+  mediaData: PropTypes.object.isRequired,
 };
 
 export async function getServerSideProps({ query }) {

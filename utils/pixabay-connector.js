@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-import { authenticate } from '../utils/pixabay';
-
 import { API_KEY } from '../constants/api-keys/pixabay-key';
+import { authenticate } from './pixabay';
 
 const { searchImages, searchVideos } = authenticate(API_KEY);
 

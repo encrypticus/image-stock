@@ -25,6 +25,6 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down(800)]: {
       width: '100%',
       height: 'auto',
-    }
+    },
   },
 }));

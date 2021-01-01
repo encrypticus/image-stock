@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Provider as ReduxProvider } from 'react-redux';
+
 import { store } from '../redux/store';
 
 import '../styles/globals.scss';
