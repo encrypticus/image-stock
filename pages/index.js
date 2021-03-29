@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { PageHead } from '../components/Head';
 import { Header } from '../components/Header';
 import { ImageList } from '../components/ImageList';
-import { useStyles } from './styles';
+import { useStyles } from '../styles/styles';
 
 export default function Home({ mediaData }) {
   const styles = useStyles();
