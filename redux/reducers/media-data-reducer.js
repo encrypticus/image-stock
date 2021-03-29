@@ -6,12 +6,15 @@ const initialState = {
     totalHits: '',
     hits: [],
   },
-  options: {},
+  options: {
+    safesearch: true,
+    editors_choice: false,
+  },
   query: '',
   mediaType: 'image',
 };
 
-const imagesReducer = createSlice({
+const mediaReducer = createSlice({
   name: 'mediaData',
   initialState,
   reducers: {
@@ -22,16 +25,27 @@ const imagesReducer = createSlice({
       state.mediaData.totalHits = totalHits;
       state.mediaData.hits = [...currentHits, ...hits];
     },
-    resetState(state) {
+    clearMediaData(state) {
       state.mediaData.total = '';
       state.mediaData.totalHits = '';
       state.mediaData.hits = [];
-      state.options = {};
+      // state.options = {};
     },
     changeOptions(state, { payload }) {
       state.options = { ...state.options, ...payload };
     },
+    changeMediaType(state, { payload }) {
+      state.mediaType = payload;
+    },
   },
 });
 
-export const { reducer: mediaDataReducer, actions: { add, resetState, changeOptions } } = imagesReducer;
+export const {
+  reducer: mediaDataReducer,
+  actions: {
+    add,
+    clearMediaData,
+    changeOptions,
+    changeMediaType
+  }
+} = mediaReducer;
