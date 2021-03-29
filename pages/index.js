@@ -52,7 +52,7 @@ export async function getServerSideProps({ query }) {
   let mediaData = null;
 
   try {
-    const res = await fetch('http://localhost:3000/api/pages', {
+    const res = await fetch(process.env.URL + '/api/pages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
