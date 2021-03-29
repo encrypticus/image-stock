@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { Zoom } from '../../lib/animations';
 import { Categories } from './Categories';
 import { Favorites } from './Favorites';
+import { FilterMenuButton } from './FilterMenuButton';
+import { MainMenu as FilterMenu } from './FilterMenus/MainMenu';
 import { History } from './History';
 import { Logo } from './Logo';
 import { MainSearch } from './Search/MainSearch';
@@ -18,7 +20,25 @@ export const Header = ({ setMarginTop }) => {
   const [yOffset, setYOffset] = useState(0);
   const [searchShown, showSearch] = useState(false);
   const [headerReduced, reduceHeader] = useState(false);
+  const [anchorElt, setAnchorElt] = useState(null);
+  const isFilterMenuOpen = Boolean(anchorElt);
   const headerRef = useRef(null);
+
+  const handleFilterMenuOpen = (event) => {
+    setAnchorElt(event.currentTarget);
+  };
+
+  const handleFilterMenuClose = () => {
+    setAnchorElt(null);
+  };
+
+  const renderFilterMenu = () => (
+    <FilterMenu
+      anchorElt={anchorElt}
+      open={isFilterMenuOpen}
+      onClose={handleFilterMenuClose}
+    />
+  );
 
   const getMarginTop = (marginTop) => {
     setMarginTop(marginTop);
@@ -85,6 +105,8 @@ export const Header = ({ setMarginTop }) => {
         </Zoom>
         <Favorites />
         <History />
+        <FilterMenuButton filterMenuHandler={handleFilterMenuOpen} />
+        {renderFilterMenu()}
       </div>
       <MainSearch />
       <Categories />
