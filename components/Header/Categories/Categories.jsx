@@ -8,10 +8,10 @@ import {
   List, ListItem, ListItemText, Box,
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { navMenuData } from '../../../constants/nav-menu-data';
-import { resetState, changeOptions } from '../../../redux/reducers/media-data-reducer';
+import { clearMediaData, changeOptions } from '../../../redux/reducers/media-data-reducer';
 import { getQueryString } from '../../../utils/query-string';
 import classes from './style.module.scss';
 import { useStyles } from './styles';
@@ -20,6 +20,7 @@ export const Categories = () => {
   const wrapperRef = useRef(null);
   const listRef = useRef(null);
   const dispatch = useDispatch();
+  const { mediaDataReducer: { options, mediaType } } = useSelector((state) => state);
   const router = useRouter();
 
   useEffect(() => {
@@ -111,12 +112,12 @@ export const Categories = () => {
   const styles = useStyles();
 
   const selectCategory = (category) => {
-    dispatch(resetState());
+    dispatch(clearMediaData());
     dispatch(changeOptions({ category: category.toLowerCase() }));
 
     const settings = {
-      options: { category: category.toLowerCase() },
-      mediaType: 'image',
+      options: { ...options, category: category.toLowerCase() },
+      mediaType,
     };
 
     const optionsQueryString = getQueryString(settings.options);
