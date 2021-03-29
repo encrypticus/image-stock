@@ -36,7 +36,17 @@ export const ImageList = ({ mediaData }) => {
   }, [mediaData]);
 
   useEffect(() => {
-    dispatch(changeOptions(mediaData.options));
+    let { options: { safesearch, editors_choice, colors } } = mediaData;
+    const safesearchFromQueryString = safesearch !== 'false';
+    const editorsChoiceFromQueryString = editors_choice === 'true';
+    colors && (colors = colors.split(','));
+
+    dispatch(changeOptions({
+      ...mediaData.options,
+      safesearch: safesearchFromQueryString,
+      editors_choice: editorsChoiceFromQueryString,
+      colors,
+    }));
   }, []);
 
   useEffect(() => {
@@ -126,9 +136,9 @@ export const ImageList = ({ mediaData }) => {
       {
         loading
         && (
-        <div className="spinner-container">
-          <MetroSpinner color="#83838A" size={60} />
-        </div>
+          <div className="spinner-container">
+            <MetroSpinner color="#83838A" size={60} />
+          </div>
         )
       }
     </>
