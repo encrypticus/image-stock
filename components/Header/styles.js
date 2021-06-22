@@ -6,7 +6,8 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
     zIndex: 99,
-    width: '100%',
+    left: 0,
+    right: 0,
     backgroundColor: '#000',
     padding: '45px 20px',
     overflow: 'hidden',

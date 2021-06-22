@@ -89,13 +89,16 @@ export const ImageList = ({ mediaData }) => {
   });
 
   const renderImageList = (mediaList) => (
-    mediaList.map(({ webformatURL, tags, id }, index) => (
-      <ImageListItem
-        key={`${id}#${index}`}
-        src={webformatURL}
-        tags={tags}
-      />
-    ))
+    mediaList.map((mediaItem, index) => {
+      const { webformatURL, previewURL, previewWidth, previewHeight, tags, id } = mediaItem;
+      return (
+        <ImageListItem
+          key={`${id}#${index}`}
+          src={previewURL}
+          tags={tags}
+        />
+      );
+    })
   );
 
   // useEffect(() => {

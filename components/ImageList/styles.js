@@ -6,7 +6,7 @@ export const useStyles = makeStyles({
     // height: '100%', // for Masonry.js
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    // justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
 });

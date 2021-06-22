@@ -9,6 +9,7 @@ import { useStyles } from '../styles/styles';
 
 export default function Home({ mediaData }) {
   const styles = useStyles();
+  console.log(mediaData);
 
   const mainRef = useRef(null);
   const main = mainRef.current;
@@ -48,7 +49,7 @@ Home.propTypes = {
 };
 
 export async function getServerSideProps({ query }) {
-  const { page = 1 } = query;
+  const { page = 1, per_page = 40 } = query;
   let mediaData = null;
 
   try {
@@ -57,7 +58,7 @@ export async function getServerSideProps({ query }) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ ...query, page }),
+      body: JSON.stringify({ ...query, page, per_page }),
     });
     if (res.status !== 200) {
       throw new Error('Failed to fetch');

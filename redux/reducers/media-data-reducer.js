@@ -9,6 +9,7 @@ const initialState = {
   options: {
     safesearch: true,
     editors_choice: false,
+    per_page: 40,
   },
   query: '',
   mediaType: 'image',

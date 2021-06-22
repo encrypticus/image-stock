@@ -2,7 +2,7 @@ import { pixabayConnector } from '../../utils/pixabay-connector';
 
 export default async (req, res) => {
   const { query, mediaType, ...options } = req.body;
-  const perPage = 20;
+  const perPage = 40;
 
   try {
     const data = await pixabayConnector.searchMedia({ query, options, mediaType });
