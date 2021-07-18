@@ -9,7 +9,6 @@ import { useStyles } from '../styles/styles';
 
 export default function Home({ mediaData }) {
   const styles = useStyles();
-  console.log(mediaData);
 
   const mainRef = useRef(null);
   const main = mainRef.current;
@@ -24,18 +23,11 @@ export default function Home({ mediaData }) {
   return (
     <div className="page-container">
       <PageHead title="Главная" />
-      <Header
-        setMarginTop={setMarginTop}
-      />
+      <Header setMarginTop={setMarginTop} />
 
       <main ref={mainRef}>
-        <div
-          className={`inner-container ${styles.homePageContainer}`}
-          ref={containerRef}
-        >
-          <ImageList
-            mediaData={mediaData}
-          />
+        <div className={`inner-container ${styles.homePageContainer}`} ref={containerRef}>
+          <ImageList mediaData={mediaData} />
         </div>
       </main>
 
