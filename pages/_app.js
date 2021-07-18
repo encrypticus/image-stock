@@ -1,19 +1,12 @@
-import { ThemeProvider } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { Provider as ReduxProvider } from 'react-redux';
-
-import { store } from '../redux/store';
-import { theme } from '../styles/theme';
-
-import '../styles/globals.scss';
+import { Providers } from '../hocs/Providers';
+import '../styles/globals.scss'; // todo переписать на createGlobalStyle из styled components
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
-      <ReduxProvider store={store}>
-        <Component {...pageProps} />
-      </ReduxProvider>
-    </ThemeProvider>
+    <Providers>
+      <Component {...pageProps} />
+    </Providers>
   );
 }
 
