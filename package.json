@@ -17,6 +17,7 @@
     "animate.css": "^4.1.1",
     "clsx": "^1.1.1",
     "firebase": "^8.0.0",
+    "framer-motion": "^4.1.17",
     "next": "9.5.5",
     "pixabay-api": "^1.0.4",
     "prop-types": "^15.7.2",
@@ -37,6 +38,7 @@
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.0.0",
     "eslint-watch": "^7.0.0",
+    "prettier": "^2.3.1",
     "sass": "^1.29.0"
   }
 }
