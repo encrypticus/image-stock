@@ -15,6 +15,7 @@
           "styles": "./styles"
         }
       }
-    ]
+    ],
+    ["babel-plugin-styled-components"]
   ]
 }

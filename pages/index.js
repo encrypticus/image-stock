@@ -10,22 +10,14 @@ import { useStyles } from '../styles/styles';
 export default function Home({ mediaData }) {
   const styles = useStyles();
 
-  const mainRef = useRef(null);
-  const main = mainRef.current;
   const containerRef = useRef(null);
-
-  const [marginTop, setMarginTop] = useState(0);
-
-  useEffect(() => {
-    main && (main.style.marginTop = `${marginTop}px`);
-  }, [marginTop]);
 
   return (
     <div className="page-container">
       <PageHead title="Главная" />
-      <Header setMarginTop={setMarginTop} />
+      <Header />
 
-      <main ref={mainRef}>
+      <main style={{ marginTop: 315 }}>
         <div className={`inner-container ${styles.homePageContainer}`} ref={containerRef}>
           <ImageList mediaData={mediaData} />
         </div>
