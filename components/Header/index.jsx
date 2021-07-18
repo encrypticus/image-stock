@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 import { Zoom } from '../../lib/animations';
 import { Categories } from './Categories';
