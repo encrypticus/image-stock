@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 
-export const theme = createMuiTheme({
+export const muiTheme = createMuiTheme({
   overrides: {
     MuiMenu: {
       list: {
@@ -20,7 +20,7 @@ export const theme = createMuiTheme({
         color: green[400],
         '&$checked': {
           color: `${green[600]}!important`,
-        }
+        },
       },
     },
 
