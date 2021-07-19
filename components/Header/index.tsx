@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Zoom } from '../../lib/animations';
 import { Categories } from './Categories';
-import { Favorites } from './Favorites';
+import { Favorites } from 'components/Header/Favorites';
 import { FilterMenuButton } from './FilterMenuButton';
 import { MainMenu as FilterMenu } from './FilterMenus/MainMenu';
 import { History } from './History';
