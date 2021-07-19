@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Zoom } from '../../lib/animations';
 import { Categories } from './Categories';
@@ -9,10 +9,10 @@ import { History } from './History';
 import { Logo } from './Logo';
 import { MainSearch } from './Search/MainSearch';
 import { SmallSearch } from './Search/SmallSearch';
-import { usePresenter } from './usePresenter';
+import { usePresenter } from 'components/Header/usePresenter';
 import { ViewStyled, ViewInnerStyled } from './styled';
 
-export const Header = () => {
+export const Header: FC = () => {
   const {
     headerRef,
     isFilterMenuOpen,

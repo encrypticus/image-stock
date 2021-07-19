@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, MouseEvent } from 'react';
 import classes from './style.module.scss';
 
 export const usePresenter = () => {
@@ -6,11 +6,11 @@ export const usePresenter = () => {
   const [yOffset, setYOffset] = useState(0);
   const [isSearchShown, setIsSearchShown] = useState(false);
   const [isHeaderMinified, setIsHeaderMinified] = useState(false);
-  const [anchorElt, setAnchorElt] = useState(null);
+  const [anchorElt, setAnchorElt] = useState<null | HTMLElement>(null);
   const isFilterMenuOpen = Boolean(anchorElt);
-  const headerRef = useRef(null);
+  const headerRef = useRef<HTMLElement>(null);
 
-  const handleFilterMenuOpen = (event) => {
+  const handleFilterMenuOpen = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorElt(event.currentTarget);
   };
 
@@ -18,12 +18,12 @@ export const usePresenter = () => {
     setAnchorElt(null);
   };
 
-  const toggleHeaderHeight = (minify) => {
+  const toggleHeaderHeight = (minify: Boolean) => {
     const { current: headerDOM } = headerRef;
     if (minify) {
-      headerDOM.classList.add(classes.minified);
+      headerDOM && headerDOM.classList.add(classes.minified);
     } else {
-      headerDOM.classList.remove(classes.minified);
+      headerDOM && headerDOM.classList.remove(classes.minified);
     }
   };
 
@@ -48,7 +48,7 @@ export const usePresenter = () => {
     });
 
     window.addEventListener('resize', () => {
-      headerDOM.style.maxHeight = `${headerDOM.scrollHeight}px`;
+      headerDOM && (headerDOM.style.maxHeight = `${headerDOM.scrollHeight}px`);
     });
   }, []);
 

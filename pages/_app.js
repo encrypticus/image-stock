@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { Providers } from '../hocs/Providers';
 import '../styles/globals.scss'; // todo переписать на createGlobalStyle из styled components
+import { Providers } from '../hocs/Providers';
 
 function MyApp({ Component, pageProps }) {
   return (
