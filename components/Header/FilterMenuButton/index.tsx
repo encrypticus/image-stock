@@ -12,7 +12,7 @@ interface Props {
 
 export const FilterMenuButton: FC<Props> = ({ filterMenuHandler }) => {
   return (
-    <ViewStyled bgColor={'red'}>
+    <ViewStyled>
       <ButtonStyled onClick={filterMenuHandler} variant="text" startIcon={<TuneIcon />}>
         <ButtonTextStyled>Фильтр</ButtonTextStyled>
       </ButtonStyled>
