@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Button } from '@material-ui/core';
 
-export const ViewStyled = styled('div')<{ bgColor?: string }>`
+export const ViewStyled = styled.div`
   display: flex;
   align-items: center;
   margin-left: 20px;
-  background: ${({ bgColor }) => (bgColor === 'red' ? 'red' : 'blue')};
 `;
 
 export const ButtonStyled = styled(Button)`
