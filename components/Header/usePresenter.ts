@@ -48,7 +48,7 @@ export const usePresenter = () => {
     });
 
     window.addEventListener('resize', () => {
-      headerDOM && (headerDOM.style.maxHeight = `${headerDOM.scrollHeight}px`);
+      headerDOM && (headerDOM.style.maxHeight = window.innerWidth <= 375 ? '577px' : '315px');
     });
   }, []);
 
