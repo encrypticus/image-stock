@@ -6,7 +6,7 @@ import { Favorites } from 'components/Header/Favorites';
 import { FilterMenuButton } from 'components/Header/FilterMenuButton';
 import { MainMenu as FilterMenu } from './FilterMenus/MainMenu';
 import { History } from './History';
-import { Logo } from './Logo';
+import { Logo } from 'components/Header/Logo';
 import { MainSearch } from './Search/MainSearch';
 import { SmallSearch } from './Search/SmallSearch';
 import { usePresenter } from 'components/Header/usePresenter';
