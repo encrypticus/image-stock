@@ -12,7 +12,8 @@
       "lib/*": ["lib/*"],
       "redux/*": ["redux/*"],
       "styles/*": ["styles/*"],
-      "utils/*": ["utils/*"]
+      "utils/*": ["utils/*"],
+      "types/*": ["types/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

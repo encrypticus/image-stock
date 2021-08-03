@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IMediaDataState } from 'types/index';
 
-const initialState = {
+const initialState: IMediaDataState = {
   mediaData: {
     total: '',
     totalHits: '',
@@ -20,7 +21,9 @@ const mediaReducer = createSlice({
   initialState,
   reducers: {
     add(state, { payload: { hits, total, totalHits } }) {
-      const { mediaData: { hits: currentHits } } = state;
+      const {
+        mediaData: { hits: currentHits },
+      } = state;
 
       state.mediaData.total = total;
       state.mediaData.totalHits = totalHits;
@@ -43,10 +46,5 @@ const mediaReducer = createSlice({
 
 export const {
   reducer: mediaDataReducer,
-  actions: {
-    add,
-    clearMediaData,
-    changeOptions,
-    changeMediaType
-  }
+  actions: { add, clearMediaData, changeOptions, changeMediaType },
 } = mediaReducer;
