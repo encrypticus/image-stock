@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { Zoom } from '../../lib/animations';
-import { Categories } from './Categories';
+import { Categories } from 'components/Header/Categories';
 import { Favorites } from 'components/Header/Favorites';
 import { FilterMenuButton } from 'components/Header/FilterMenuButton';
 import { MainMenu as FilterMenu } from './FilterMenus/MainMenu';
@@ -10,7 +10,7 @@ import { Logo } from 'components/Header/Logo';
 import { MainSearch } from './Search/MainSearch';
 import { SmallSearch } from './Search/SmallSearch';
 import { usePresenter } from 'components/Header/usePresenter';
-import { ViewStyled, ViewInnerStyled } from './styled';
+import { ViewInnerStyled, ViewStyled } from './styled';
 
 export const Header: FC = () => {
   const {
