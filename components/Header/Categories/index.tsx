@@ -1,28 +1,20 @@
 import { FC } from 'react';
-import { Box, List, ListItem, ListItemText } from '@material-ui/core';
-
+import { ListItemStyled, ListItemTextStyled, ListStyled, ViewStyled, } from 'components/Header/Categories/styled';
 import classes from './style.module.scss';
-import { useStyles } from './styles';
 import { usePresenter } from 'components/Header/Categories/usePresenter';
 
 export const Categories: FC = () => {
   const { listRef, wrapperRef, selectCategory, navMenuData } = usePresenter();
-  const styles = useStyles();
 
   return (
-    <Box className={`${styles.wrapper} ${classes.masked}`} {...{ ref: wrapperRef }}>
-      <List className={styles.root} ref={listRef}>
+    <ViewStyled className={classes.masked} ref={wrapperRef}>
+      <ListStyled ref={listRef}>
         {navMenuData.map((item, index) => (
-          <ListItem classes={{ root: styles.item }} button key={index}>
-            <ListItemText
-              primary={item}
-              key={index}
-              classes={{ primary: styles.label }}
-              onClick={() => selectCategory(item)}
-            />
-          </ListItem>
+          <ListItemStyled button key={index}>
+            <ListItemTextStyled primary={item} key={index} onClick={() => selectCategory(item)} />
+          </ListItemStyled>
         ))}
-      </List>
-    </Box>
+      </ListStyled>
+    </ViewStyled>
   );
 };
