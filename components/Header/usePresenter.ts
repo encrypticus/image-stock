@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState, MouseEvent } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import classes from './style.module.scss';
+import { mobileWidth } from 'utils/index';
 
 export const usePresenter = () => {
   const [scrollDirection, setScrollDirection] = useState('');
@@ -48,7 +49,8 @@ export const usePresenter = () => {
     });
 
     window.addEventListener('resize', () => {
-      headerDOM && (headerDOM.style.maxHeight = window.innerWidth <= 375 ? '577px' : '315px');
+      headerDOM &&
+        (headerDOM.style.maxHeight = window.innerWidth <= mobileWidth ? '620px' : '315px');
     });
   }, []);
 
