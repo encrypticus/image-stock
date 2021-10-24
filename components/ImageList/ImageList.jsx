@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { List } from '@material-ui/core';
 import Router, { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MetroSpinner } from 'react-spinners-kit';
 
 import { add, changeOptions } from '../../redux/reducers/media-data-reducer';
@@ -18,7 +18,13 @@ export const ImageList = ({ mediaData }) => {
   const listRef = useRef(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { mediaDataReducer: { mediaData: { hits }, mediaType: storeMediaType, options } } = useSelector((state) => state);
+  const {
+    mediaDataReducer: {
+      mediaData: { hits },
+      mediaType: storeMediaType,
+      options,
+    },
+  } = useSelector((state) => state);
   const dispatch = useDispatch();
   const startLoading = () => setLoading(true);
   const stopLoading = () => setLoading(false);
@@ -36,17 +42,21 @@ export const ImageList = ({ mediaData }) => {
   }, [mediaData]);
 
   useEffect(() => {
-    let { options: { safesearch, editors_choice, colors } } = mediaData;
+    let {
+      options: { safesearch, editors_choice, colors },
+    } = mediaData;
     const safesearchFromQueryString = safesearch !== 'false';
     const editorsChoiceFromQueryString = editors_choice === 'true';
     colors && (colors = colors.split(','));
 
-    dispatch(changeOptions({
-      ...mediaData.options,
-      safesearch: safesearchFromQueryString,
-      editors_choice: editorsChoiceFromQueryString,
-      colors,
-    }));
+    dispatch(
+      changeOptions({
+        ...mediaData.options,
+        safesearch: safesearchFromQueryString,
+        editors_choice: editorsChoiceFromQueryString,
+        colors,
+      }),
+    );
   }, []);
 
   useEffect(() => {
@@ -62,7 +72,8 @@ export const ImageList = ({ mediaData }) => {
     const lastMediaItemLoaded = document.querySelector('.grid > .grid-item:last-child');
 
     if (lastMediaItemLoaded) {
-      const lastMediaItemLoadedOffset = lastMediaItemLoaded.offsetTop + lastMediaItemLoaded.clientHeight;
+      const lastMediaItemLoadedOffset =
+        lastMediaItemLoaded.offsetTop + lastMediaItemLoaded.clientHeight;
       const pageOffset = window.pageYOffset + window.innerHeight;
 
       if (pageOffset > lastMediaItemLoadedOffset && !loading) {
@@ -88,18 +99,11 @@ export const ImageList = ({ mediaData }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   });
 
-  const renderImageList = (mediaList) => (
+  const renderImageList = (mediaList) =>
     mediaList.map((mediaItem, index) => {
-      const { webformatURL, previewURL, previewWidth, previewHeight, tags, id } = mediaItem;
-      return (
-        <ImageListItem
-          key={`${id}#${index}`}
-          src={previewURL}
-          tags={tags}
-        />
-      );
-    })
-  );
+      const { id } = mediaItem;
+      return <ImageListItem key={`${id}#${index}`} hit={mediaItem} />;
+    });
 
   // useEffect(() => {
   //   if (listRef.current) {
@@ -129,21 +133,15 @@ export const ImageList = ({ mediaData }) => {
 
   return (
     <>
-      <List
-        className={`${styles.root} grid`}
-        ref={listRef}
-      >
+      <List className={`${styles.root} grid`} ref={listRef}>
         {/* <li className='grid-sizer'></li> need for Masonry.js */}
         {renderImageList(hits)}
       </List>
-      {
-        loading
-        && (
-          <div className="spinner-container">
-            <MetroSpinner color="#83838A" size={60} />
-          </div>
-        )
-      }
+      {loading && (
+        <div className="spinner-container">
+          <MetroSpinner color="#83838A" size={60} />
+        </div>
+      )}
     </>
   );
 };

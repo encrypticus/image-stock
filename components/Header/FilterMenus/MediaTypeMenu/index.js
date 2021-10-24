@@ -1,1 +1,0 @@
-export { MediaTypeMenu } from './MediaTypeMenu';

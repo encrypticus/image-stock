@@ -1,1 +1,0 @@
-export { VideoTypeMenu } from './VideoTypeMenu';

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { MediaType, ImageType, Lang, Orientation, Order } from 'types/enums';
 import { IMediaDataState } from 'types/index';
 
 const initialState: IMediaDataState = {
@@ -11,9 +12,16 @@ const initialState: IMediaDataState = {
     safesearch: true,
     editors_choice: false,
     per_page: 40,
+    colors: [],
+    image_type: ImageType.ALL,
+    lang: Lang.EN,
+    orientation: Orientation.ALL,
+    min_width: 0,
+    min_height: 0,
+    order: Order.POPULAR,
   },
   query: '',
-  mediaType: 'image',
+  mediaType: MediaType.IMAGE,
 };
 
 const mediaReducer = createSlice({

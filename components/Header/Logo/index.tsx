@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import Link from 'next/link';
 import { ImgStyled, LinkStyled, LogoTextStyled, ViewStyled } from 'components/Header/Logo/styled';
+import Link from 'next/link';
+import React, { FC } from 'react';
 
 export const Logo: FC = () => {
   return (
@@ -8,7 +8,7 @@ export const Logo: FC = () => {
       <Link href="/">
         <LinkStyled href="/">
           <ImgStyled src="/images/logo.png" alt="Image Stock" />
-          <LogoTextStyled>imageStock</LogoTextStyled>
+          <LogoTextStyled>ImageStock</LogoTextStyled>
         </LinkStyled>
       </Link>
     </ViewStyled>

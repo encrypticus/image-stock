@@ -1,1 +1,0 @@
-export { ImageTypeMenu } from './ImageTypeMenu';

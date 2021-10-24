@@ -8,5 +8,6 @@ export const useStyles = makeStyles({
     flexWrap: 'wrap',
     // justifyContent: 'space-between',
     alignItems: 'flex-start',
+    justifyContent: 'center',
   },
 });
