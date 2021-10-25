@@ -1,6 +1,6 @@
 import { take, put, call, all, actionChannel, SagaReturnType } from 'redux-saga/effects';
 import { IMediaDataState } from 'types/index';
-import { pixabayConnector } from '../../utils/pixabay-connector';
+import { pixabayConnector } from 'utils/pixabay-connector';
 import { getMediaDataAsync } from '../actions/media-data-actions';
 import { add as addMediaData } from '../reducers/media-data-reducer';
 
@@ -15,6 +15,7 @@ function* watchGetMediaDataRequest() {
   );
 
   while (true) {
+    // @ts-ignore
     const { payload: options } = yield take(requestChannel);
     console.log(options);
     yield call(getMediaDataRequest, options);
