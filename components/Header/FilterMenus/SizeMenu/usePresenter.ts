@@ -26,6 +26,7 @@ export const usePresenter = () => {
 
   const handleChangeSize = () => {
     dispatch(clearMediaData());
+    console.log(min_width);
 
     const settings = {
       options: { ...options, min_width, min_height },

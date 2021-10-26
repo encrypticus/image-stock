@@ -27,24 +27,37 @@ export type Hit = {
   userImageURL: string; //"https://cdn.pixabay.com/user/2013/11/05/02-10-23-764_250x250.jpg"
 };
 
+export type MediaData = {
+  data: {
+    total: string;
+    totalHits: string;
+    hits: Hit[];
+  };
+  currentPage: number;
+  maxPage: number;
+  options: Options;
+};
+
+type Options = {
+  safesearch: boolean;
+  editors_choice: boolean;
+  per_page: number;
+  colors: Colors[] | string;
+  image_type: ImageType;
+  lang: Lang;
+  orientation: Orientation;
+  min_width: number;
+  min_height: number;
+  order: Order;
+};
+
 export interface IMediaDataState {
   mediaData: {
     total: string;
     totalHits: string;
     hits: Hit[];
   };
-  options: {
-    safesearch: boolean;
-    editors_choice: boolean;
-    per_page: number;
-    colors: Colors[];
-    image_type: ImageType;
-    lang: Lang;
-    orientation: Orientation;
-    min_width: number;
-    min_height: number;
-    order: Order;
-  };
+  options: Options;
   query: string;
   mediaType: MediaType;
 }

@@ -3,14 +3,11 @@ import { motion } from 'framer-motion';
 import { memo, FC } from 'react';
 import { Hit } from 'types/index';
 
-import { useStyles } from './styles';
-
 interface Props {
   hit: Hit;
 }
 
 export const ImageListItem: FC<Props> = memo(({ hit }) => {
-  const styles = useStyles();
   const { previewURL, tags, webformatHeight } = hit;
   const processedSrc = previewURL.replace(/_(\d+)\.(.+)$/, (_, num, ext) => '__' + 340 + '.' + ext);
   const variants = {

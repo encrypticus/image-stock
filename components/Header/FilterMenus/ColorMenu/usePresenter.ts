@@ -21,8 +21,8 @@ export const usePresenter = () => {
     target: { checked, name: colorName },
   }: ChangeEvent<HTMLInputElement>) => {
     colors = checked
-      ? ([...colors, colorName] as Colors[])
-      : colors.filter((color: string) => color !== colorName);
+      ? ([...(colors as Colors[]), colorName] as Colors[])
+      : (colors as Colors[]).filter((color: string) => color !== colorName);
     dispatch(changeOptions({ colors }));
     dispatch(clearMediaData());
 
