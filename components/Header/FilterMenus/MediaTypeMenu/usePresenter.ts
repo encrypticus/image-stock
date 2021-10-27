@@ -11,7 +11,7 @@ export const usePresenter = () => {
     mediaDataReducer: { mediaType },
   } = useSelector((state: RootState) => state);
 
-  const handleChange = ({ target: { value: mediaType } }: ChangeEvent<{ value: string }>) => {
+  const handleChange = ({ target: { value: mediaType } }: ChangeEvent<{ value: unknown }>) => {
     dispatch(changeMediaType(mediaType));
     const queryString = `${router.pathname}?mediaType=${mediaType}`;
     dispatch(clearMediaData());
