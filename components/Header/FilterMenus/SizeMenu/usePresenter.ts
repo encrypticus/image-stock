@@ -42,5 +42,7 @@ export const usePresenter = () => {
     handleChangeWidth,
     handleChangeHeight,
     handleChangeSize,
+    min_width,
+    min_height,
   };
 };

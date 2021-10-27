@@ -1,12 +1,17 @@
 import { Menu, MenuItem } from '@material-ui/core';
 import { Check as CheckIcon } from '@material-ui/icons';
-import { TextFieldStyled, CloseIconStyled, ButtonStyled, } from 'components/Header/FilterMenus/SizeMenu/styled';
+import {
+  TextFieldStyled,
+  CloseIconStyled,
+  ButtonStyled,
+} from 'components/Header/FilterMenus/SizeMenu/styled';
 import { usePresenter } from 'components/Header/FilterMenus/SizeMenu/usePresenter';
 import { FC } from 'react';
 import { MenuItemProps } from 'types/index';
 
 export const SizeMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
-  const { handleChangeSize, handleChangeWidth, handleChangeHeight } = usePresenter();
+  const { handleChangeSize, handleChangeWidth, handleChangeHeight, min_width, min_height } =
+    usePresenter();
 
   return (
     <Menu
@@ -26,6 +31,7 @@ export const SizeMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
     >
       <MenuItem>
         <TextFieldStyled
+          value={min_width}
           onChange={handleChangeWidth}
           label="мин. ширина"
           InputLabelProps={{
@@ -37,6 +43,7 @@ export const SizeMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
         />
         <CloseIconStyled fontSize="small" />
         <TextFieldStyled
+          value={min_height}
           onChange={handleChangeHeight}
           label="мин. высота"
           InputLabelProps={{
