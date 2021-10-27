@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { MediaType, ImageType, Lang, Orientation, Order } from 'types/enums';
+import { MediaType, ImageType, Lang, Orientation, Order, VideoType } from 'types/enums';
 import { IMediaDataState } from 'types/index';
 
 const initialState: IMediaDataState = {
@@ -14,6 +14,7 @@ const initialState: IMediaDataState = {
     per_page: 40,
     colors: [],
     image_type: ImageType.ALL,
+    video_type: VideoType.ALL,
     lang: Lang.EN,
     orientation: Orientation.ALL,
     min_width: 0,

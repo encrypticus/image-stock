@@ -1,4 +1,4 @@
-import { MediaType, ImageType, Colors, Lang, Orientation, Order } from 'types/enums';
+import { MediaType, ImageType, Colors, Lang, Orientation, Order, VideoType } from 'types/enums';
 
 type VideoMeta = {
   url: string; //"https://player.vimeo.com/external/135736646.hd.mp4?s=ed02d71c92dd0df7d1110045e6eb65a6&profile_id=119"
@@ -63,6 +63,7 @@ type Options = {
   per_page: number;
   colors: Colors[] | string;
   image_type: ImageType;
+  video_type: VideoType;
   lang: Lang;
   orientation: Orientation;
   min_width: number;

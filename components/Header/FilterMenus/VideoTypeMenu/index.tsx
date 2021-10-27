@@ -3,14 +3,10 @@ import { MenuItemStyled, LabelStyled } from 'components/Header/FilterMenus/style
 import { ChangeEvent, FC, useState } from 'react';
 import { VideoType } from 'types/enums';
 import { MenuItemProps } from 'types/index';
+import { usePresenter } from 'components/Header/FilterMenus/VideoTypeMenu/usePresenter';
 
 export const VideoTypeMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
-  const [selectedValue, setSelectedValue] = useState<VideoType>(VideoType.ALL);
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value as VideoType);
-  };
-
+  const { handleChange, video_type } = usePresenter();
   const handleClose = () => {
     setTimeout(onClose, 100);
   };
@@ -33,7 +29,7 @@ export const VideoTypeMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) =
     >
       <MenuItemStyled onClick={handleClose}>
         <LabelStyled
-          checked={selectedValue === VideoType.ALL}
+          checked={video_type === VideoType.ALL}
           value={VideoType.ALL}
           control={<Radio onChange={handleChange} />}
           label="все"
@@ -43,7 +39,7 @@ export const VideoTypeMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) =
 
       <MenuItemStyled onClick={handleClose}>
         <LabelStyled
-          checked={selectedValue === VideoType.VIDEO}
+          checked={video_type === VideoType.VIDEO}
           value={VideoType.VIDEO}
           control={<Radio onChange={handleChange} />}
           label="видео"
@@ -53,7 +49,7 @@ export const VideoTypeMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) =
 
       <MenuItemStyled onClick={handleClose}>
         <LabelStyled
-          checked={selectedValue === VideoType.ANIMATION}
+          checked={video_type === VideoType.ANIMATION}
           value={VideoType.ANIMATION}
           control={<Radio onChange={handleChange} />}
           label="анимация"

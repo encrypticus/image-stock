@@ -12,7 +12,7 @@ export enum ImageType {
 
 export enum VideoType {
   ALL = 'all',
-  VIDEO = 'video',
+  VIDEO = 'film',
   ANIMATION = 'animation',
 }
 
