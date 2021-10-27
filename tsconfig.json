@@ -9,6 +9,7 @@
       "components/*": ["components/*"],
       "constants/*": ["constants/*"],
       "hocs/*": ["hocs/*"],
+      "hooks/*": ["hooks/*"],
       "lib/*": ["lib/*"],
       "redux/*": ["redux/*"],
       "styles/*": ["styles/*"],

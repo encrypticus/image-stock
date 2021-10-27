@@ -9,6 +9,7 @@ import { OrientMenu } from 'components/Header/FilterMenus/OrientMenu';
 import { SizeMenu } from 'components/Header/FilterMenus/SizeMenu';
 import { SortMenu } from 'components/Header/FilterMenus/SortMenu';
 import { VideoTypeMenu } from 'components/Header/FilterMenus/VideoTypeMenu';
+import { ResetFilter } from 'components/Header/ResetFilter';
 import { FC } from 'react';
 import { MenuItemProps } from 'types/index';
 
@@ -132,6 +133,10 @@ export const MainMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
           }
           label="Выбор редакции"
         />
+      </MenuItem>
+
+      <MenuItem>
+        <ResetFilter />
       </MenuItem>
     </MenuStyled>
   );

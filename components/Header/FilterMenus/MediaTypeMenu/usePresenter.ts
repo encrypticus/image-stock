@@ -1,22 +1,17 @@
 import { ChangeEvent } from 'react';
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeMediaType, resetStore } from 'redux/reducers/media-data-reducer';
+import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
+import { useResetStore } from 'hooks/useResetStore';
+import { MediaType } from 'types/enums';
 
 export const usePresenter = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
   const {
     mediaDataReducer: { mediaType },
   } = useSelector((state: RootState) => state);
+  const { reset } = useResetStore();
 
-  const handleChange = ({ target: { value: mediaType } }: ChangeEvent<{ value: unknown }>) => {
-    dispatch(resetStore());
-    dispatch(changeMediaType(mediaType));
-    const queryString = `${router.pathname}?mediaType=${mediaType}`;
-    router.push(queryString);
-  };
+  const handleChange = ({ target: { value: mediaType } }: ChangeEvent<{ value: unknown }>) =>
+    reset(mediaType as MediaType);
 
   return {
     mediaType,
