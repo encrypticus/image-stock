@@ -10,7 +10,6 @@ import { NoResultsMessage } from '../components/NoResultsMessage';
 
 export default function Home({ mediaData }) {
   const styles = useStyles();
-  console.log(mediaData);
 
   const containerRef = useRef(null);
 

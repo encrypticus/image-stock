@@ -44,6 +44,9 @@ const mediaReducer = createSlice({
       state.mediaData.hits = [];
       // state.options = {};
     },
+    resetStore() {
+      return initialState;
+    },
     changeOptions(state, { payload }) {
       state.options = { ...state.options, ...payload };
     },
@@ -55,5 +58,5 @@ const mediaReducer = createSlice({
 
 export const {
   reducer: mediaDataReducer,
-  actions: { add, clearMediaData, changeOptions, changeMediaType },
+  actions: { add, clearMediaData, changeOptions, changeMediaType, resetStore },
 } = mediaReducer;
