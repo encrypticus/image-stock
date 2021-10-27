@@ -69,6 +69,7 @@ type Options = {
   min_width: number;
   min_height: number;
   order: Order;
+  query: string;
 };
 
 export interface IMediaDataState {
@@ -78,7 +79,6 @@ export interface IMediaDataState {
     hits: Hit[];
   };
   options: Options;
-  query: string;
   mediaType: MediaType;
 }
 

@@ -20,8 +20,8 @@ const initialState: IMediaDataState = {
     min_width: 0,
     min_height: 0,
     order: Order.POPULAR,
+    query: '',
   },
-  query: '',
   mediaType: MediaType.IMAGE,
 };
 
