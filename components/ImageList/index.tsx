@@ -15,12 +15,12 @@ interface Props {
 }
 
 export const ImageList: FC<Props> = ({ mediaData }) => {
-  const { listRef, loading, hits } = usePresenter(mediaData);
+  const { listRef, loading, hits, mediaType } = usePresenter(mediaData);
 
   const renderImageList = (mediaList: Hit[]) =>
     mediaList.map((mediaItem, index) => {
       const { id } = mediaItem;
-      return <ImageListItem key={`${id}#${index}`} hit={mediaItem} />;
+      return <ImageListItem key={`${id}#${index}`} hit={mediaItem} mediaType={mediaType} />;
     });
 
   return (

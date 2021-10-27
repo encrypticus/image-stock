@@ -1,9 +1,9 @@
 import Router, { useRouter } from 'next/router';
 import { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { add, changeOptions } from 'redux/reducers/media-data-reducer';
+import { add, changeOptions, changeMediaType } from 'redux/reducers/media-data-reducer';
 import { RootState } from 'redux/store';
-import { Colors } from 'types/enums';
+import { Colors, MediaType } from 'types/enums';
 import { MediaData } from 'types/index';
 import { getQueryString } from 'utils/query-string';
 
@@ -42,6 +42,8 @@ export const usePresenter = (mediaData: MediaData) => {
         colors: colors ?? '',
       }),
     );
+
+    dispatch(changeMediaType(mediaData.mediaType ?? MediaType.IMAGE));
   }, []);
 
   useEffect(() => {
@@ -88,5 +90,6 @@ export const usePresenter = (mediaData: MediaData) => {
     listRef,
     hits,
     loading,
+    mediaType: storeMediaType,
   };
 };
