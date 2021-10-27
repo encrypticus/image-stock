@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,9 +6,11 @@ import { PageHead } from '../components/Head';
 import { Header } from '../components/Header';
 import { ImageList } from '../components/ImageList';
 import { useStyles } from '../styles/styles';
+import { NoResultsMessage } from '../components/NoResultsMessage';
 
 export default function Home({ mediaData }) {
   const styles = useStyles();
+  console.log(mediaData);
 
   const containerRef = useRef(null);
 
@@ -20,6 +22,7 @@ export default function Home({ mediaData }) {
       <main style={{ marginTop: 315 }}>
         <div className={`inner-container ${styles.homePageContainer}`} ref={containerRef}>
           <ImageList mediaData={mediaData} />
+          {!mediaData.data.totalHits && <NoResultsMessage />}
         </div>
       </main>
 
