@@ -57,7 +57,7 @@ export type MediaData = {
   mediaType?: MediaType;
 };
 
-type Options = {
+export type Options = {
   safesearch: boolean;
   editors_choice: boolean;
   per_page: number;

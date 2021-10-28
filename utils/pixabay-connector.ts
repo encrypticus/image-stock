@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
-import { API_KEY } from '../constants/api-keys/pixabay-key';
+import { API_KEY } from 'constants/api-keys/pixabay-key';
 import { authenticate } from './pixabay';
+import { MediaType } from 'types/enums';
+import { MediaData, Options } from 'types/index';
 
 const { searchImages, searchVideos } = authenticate(API_KEY);
+type PixabayRequest = { query: string; options: Options; mediaType: MediaType };
 
 export default class PixabayConnector {
   static get searchSettings() {
@@ -88,21 +91,28 @@ export default class PixabayConnector {
     };
   }
 
-  searchMedia = async ({ query, options, mediaType } = { query: '', options: {}, mediaType: 'image' }) => {
+  searchMedia = async (
+    { query, options, mediaType }: PixabayRequest = {
+      query: '',
+      options: {} as Options,
+      mediaType: MediaType.IMAGE,
+    },
+  ): Promise<Pick<MediaData, 'data'>> => {
     try {
       switch (mediaType) {
-        case 'image': {
-          return await searchImages(query, options);
+        case MediaType.IMAGE: {
+          return await searchImages(query, options, false);
         }
-        case 'video': {
-          return await searchVideos(query, options);
+        case MediaType.VIDEO: {
+          return await searchVideos(query, options, false);
         }
         default: {
-          return await searchImages(query, options);
+          return await searchImages(query, options, false);
         }
       }
     } catch (e) {
       console.log(e.message);
+      return { data: { total: '0', totalHits: '0', hits: [] } };
     }
   };
 }

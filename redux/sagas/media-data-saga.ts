@@ -4,8 +4,12 @@ import { pixabayConnector } from 'utils/pixabay-connector';
 import { getMediaDataAsync } from '../actions/media-data-actions';
 import { add as addMediaData } from '../reducers/media-data-reducer';
 
-function* getMediaDataRequest(options: Omit<IMediaDataState, 'mediaData'>): Generator {
-  const mediaData = yield call(pixabayConnector.searchMedia, options);
+function* getMediaDataRequest(options: Omit<IMediaDataState, 'mediaData'>) {
+  const mediaData: SagaReturnType<typeof pixabayConnector.searchMedia> = yield call(
+    // @ts-ignore
+    pixabayConnector.searchMedia,
+    options,
+  );
   yield put(addMediaData(mediaData));
 }
 
