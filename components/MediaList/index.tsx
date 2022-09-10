@@ -7,26 +7,26 @@ import { Spinner } from 'components/Spinner';
 import styled from 'styled-components';
 
 import { MediaData, Hit } from 'types/index';
-import { ImageListItem } from 'components/ImageList/ImageListItem';
-import { usePresenter } from 'components/ImageList/usePresenter';
+import { MediaListItem } from 'components/MediaList/MediaListItem';
+import { usePresenter } from 'components/MediaList/usePresenter';
 
 interface Props {
   mediaData: MediaData;
 }
 
-export const ImageList: FC<Props> = ({ mediaData }) => {
+export const MediaList: FC<Props> = ({ mediaData }) => {
   const { listRef, loading, hits, mediaType } = usePresenter(mediaData);
 
-  const renderImageList = (mediaList: Hit[]) =>
+  const renderMediaList = (mediaList: Hit[]) =>
     mediaList.map((mediaItem, index) => {
       const { id } = mediaItem;
-      return <ImageListItem key={`${id}#${index}`} hit={mediaItem} mediaType={mediaType} />;
+      return <MediaListItem key={`${id}#${index}`} hit={mediaItem} mediaType={mediaType} />;
     });
 
   return (
     <>
       <ListStyled className={'grid'} ref={listRef}>
-        {renderImageList(hits)}
+        {renderMediaList(hits)}
       </ListStyled>
       {loading && <Spinner />}
     </>

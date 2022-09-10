@@ -20,7 +20,7 @@ export const usePresenter = () => {
       query: { value: string };
     };
     const query = target.query.value.trim();
-    if (!query) return;
+    // if (!query) return;
 
     dispatch(resetStore());
     dispatch(changeMediaType(mediaType));

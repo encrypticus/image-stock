@@ -12,7 +12,8 @@ import { Colors } from 'types/enums';
 import { MenuItemProps } from 'types/index';
 
 export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
-  const { colors, handleColorSelection } = usePresenter();
+  const { colors, handleColorSelection, handleTransparentSelection, handleGrayScaleSelection } =
+    usePresenter();
   return (
     <Menu
       anchorEl={anchorElt}
@@ -31,18 +32,35 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
     >
       <MenuItemStyled>
         <CheckBoxWrapperStyled>
-          <FormControlLabel control={<GreenCheckboxStyled />} label="прозрачные" />
+          <FormControlLabel
+            control={
+              <GreenCheckboxStyled
+                onChange={handleTransparentSelection}
+                checked={colors.includes(Colors.TRANSPARENT)}
+              />
+            }
+            label="прозрачные"
+          />
         </CheckBoxWrapperStyled>
         <CheckBoxWrapperStyled>
-          <FormControlLabel control={<GreenCheckboxStyled />} label="чёрно-белые" />
+          <FormControlLabel
+            control={
+              <GreenCheckboxStyled
+                onChange={handleGrayScaleSelection}
+                checked={colors.includes(Colors.GRAYSCALE)}
+              />
+            }
+            label="чёрно-белые"
+          />
         </CheckBoxWrapperStyled>
-        <CheckBoxBlockStyled>
+        <CheckBoxBlockStyled disabled={colors.includes(Colors.GRAYSCALE)}>
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.RED} />}
             checkedIcon={<CheckBoxIconStyled color={Colors.RED} checked />}
             name={Colors.RED}
             checked={colors.includes(Colors.RED)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.ORANGE} />}
@@ -50,6 +68,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.ORANGE}
             checked={colors.includes(Colors.ORANGE)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.GREEN} />}
@@ -57,6 +76,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.GREEN}
             checked={colors.includes(Colors.GREEN)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.YELLOW} />}
@@ -64,6 +84,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.YELLOW}
             checked={colors.includes(Colors.YELLOW)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.TURQUOISE} />}
@@ -71,6 +92,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.TURQUOISE}
             checked={colors.includes(Colors.TURQUOISE)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.BLUE} />}
@@ -78,15 +100,17 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.BLUE}
             checked={colors.includes(Colors.BLUE)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
         </CheckBoxBlockStyled>
-        <CheckBoxBlockStyled>
+        <CheckBoxBlockStyled disabled={colors.includes(Colors.GRAYSCALE)}>
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.LILAC} />}
             checkedIcon={<CheckBoxIconStyled color={Colors.LILAC} checked darkBorder />}
             name={Colors.LILAC}
             checked={colors.includes(Colors.LILAC)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.PINK} />}
@@ -94,6 +118,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.PINK}
             checked={colors.includes(Colors.PINK)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.WHITE} checked />}
@@ -101,6 +126,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.WHITE}
             checked={colors.includes(Colors.WHITE)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.GRAY} />}
@@ -108,6 +134,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.GRAY}
             checked={colors.includes(Colors.GRAY)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.BLACK} />}
@@ -115,6 +142,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.BLACK}
             checked={colors.includes(Colors.BLACK)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
           <Checkbox
             icon={<CheckBoxIconStyled color={Colors.BROWN} />}
@@ -122,6 +150,7 @@ export const ColorMenu: FC<MenuItemProps> = ({ anchorElt, open, onClose }) => {
             name={Colors.BROWN}
             checked={colors.includes(Colors.BROWN)}
             onChange={handleColorSelection}
+            disabled={colors.includes(Colors.GRAYSCALE)}
           />
         </CheckBoxBlockStyled>
       </MenuItemStyled>

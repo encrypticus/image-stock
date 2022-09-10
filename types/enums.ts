@@ -29,6 +29,8 @@ export enum Colors {
   BLACK = 'black',
   GRAY = 'gray',
   BROWN = 'brown',
+  TRANSPARENT = 'transparent',
+  GRAYSCALE = 'grayscale',
 }
 
 export enum Lang {

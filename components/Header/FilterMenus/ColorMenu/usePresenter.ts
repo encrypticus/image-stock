@@ -36,8 +36,46 @@ export const usePresenter = () => {
     router.push(queryString);
   };
 
+  const handleTransparentSelection = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    let newColors = [...(colors as Colors[])];
+    if (checked) newColors.push(Colors.TRANSPARENT);
+    else newColors = newColors.filter((color) => color !== Colors.TRANSPARENT);
+
+    dispatch(changeOptions({ colors: newColors }));
+    dispatch(clearMediaData());
+
+    const settings = {
+      options: { ...options, colors: newColors.join(',') },
+      mediaType,
+    };
+
+    const optionsQueryString = getQueryString(settings.options);
+    const queryString = `${router.pathname}?mediaType=${settings.mediaType}${optionsQueryString}`;
+    router.push(queryString);
+  };
+
+  const handleGrayScaleSelection = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    let newColors = [...(colors as Colors[])];
+    if (checked) newColors.push(Colors.GRAYSCALE);
+    else newColors = newColors.filter((color) => color !== Colors.GRAYSCALE);
+
+    dispatch(changeOptions({ colors: newColors }));
+    dispatch(clearMediaData());
+
+    const settings = {
+      options: { ...options, colors: newColors.join(',') },
+      mediaType,
+    };
+
+    const optionsQueryString = getQueryString(settings.options);
+    const queryString = `${router.pathname}?mediaType=${settings.mediaType}${optionsQueryString}`;
+    router.push(queryString);
+  };
+
   return {
     colors,
     handleColorSelection,
+    handleTransparentSelection,
+    handleGrayScaleSelection,
   };
 };

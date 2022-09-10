@@ -16,7 +16,13 @@ export const CheckBoxWrapperStyled = styled.div`
   width: 100%;
 `;
 
-export const CheckBoxBlockStyled = styled.div``;
+export const CheckBoxBlockStyled = styled.div<{ disabled: boolean }>`
+  ${(props) =>
+    props.disabled &&
+    css`
+      opacity: 0.1;
+    `}
+`;
 
 export const CheckBoxIconStyled = styled.span<IconProps>`
   display: block;

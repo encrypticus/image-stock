@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { PageHead } from '../components/Head';
 import { Header } from '../components/Header';
-import { ImageList } from '../components/ImageList';
+import { MediaList } from '../components/MediaList';
 import { useStyles } from '../styles/styles';
 import { NoResultsMessage } from '../components/NoResultsMessage';
 
@@ -20,7 +20,7 @@ export default function Home({ mediaData }) {
 
       <main style={{ marginTop: 315 }}>
         <div className={`inner-container ${styles.homePageContainer}`} ref={containerRef}>
-          <ImageList mediaData={mediaData} />
+          <MediaList mediaData={mediaData} />
           {!mediaData.data.totalHits && <NoResultsMessage />}
         </div>
       </main>
