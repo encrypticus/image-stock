@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent } from 'react';
-import { Tune as TuneIcon } from '@material-ui/icons';
+import { Tune as TuneIcon } from '@mui/icons-material';
 import {
   ButtonStyled,
   ButtonTextStyled,
