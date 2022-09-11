@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText } from '@mui/material';
 
 export const ViewStyled = styled.div`
   ${(props) => css`
