@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Favorite } from '@material-ui/icons';
+import { Favorite } from '@mui/icons-material';
 
 export const ViewStyled = styled.div`
   margin-left: 20px;
