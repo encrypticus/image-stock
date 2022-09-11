@@ -56,27 +56,19 @@ export const usePresenter = (mediaData: MediaData) => {
   }, []);
 
   const handleScroll = () => {
-    const lastMediaItemLoaded = document.querySelector('.grid > .grid-item:last-child');
+    if (window.scrollY + window.innerHeight > document.body.scrollHeight - 200 && !loading) {
+      if (mediaData.currentPage < mediaData.maxPage) {
+        const nextPage: number = Number(mediaData.currentPage) + 1;
 
-    if (lastMediaItemLoaded instanceof HTMLElement) {
-      const lastMediaItemLoadedOffset: number =
-        lastMediaItemLoaded.offsetTop + lastMediaItemLoaded.clientHeight;
-      const pageOffset: number = window.pageYOffset + window.innerHeight;
+        const settings = {
+          options: { page: nextPage, ...options },
+          mediaType: storeMediaType,
+        };
 
-      if (pageOffset > lastMediaItemLoadedOffset && !loading) {
-        if (mediaData.currentPage < mediaData.maxPage) {
-          const nextPage: number = Number(mediaData.currentPage) + 1;
+        const optionsQueryString = getQueryString(settings.options);
+        const queryString = `${router.pathname}?mediaType=${settings.mediaType}${optionsQueryString}`;
 
-          const settings = {
-            options: { page: nextPage, ...options },
-            mediaType: storeMediaType,
-          };
-
-          const optionsQueryString = getQueryString(settings.options);
-          const queryString = `${router.pathname}?mediaType=${settings.mediaType}${optionsQueryString}`;
-
-          router.push(queryString);
-        }
+        router.push(queryString);
       }
     }
   };
