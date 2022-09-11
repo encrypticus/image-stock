@@ -18,7 +18,7 @@ export default function Home({ mediaData }) {
       <PageHead title="Главная" />
       <Header />
 
-      <main style={{ marginTop: 315 }}>
+      <main style={{ marginTop: 320 }}>
         <div className={`inner-container ${styles.homePageContainer}`} ref={containerRef}>
           <MediaList mediaData={mediaData} />
           {!mediaData.data.totalHits && <NoResultsMessage />}
