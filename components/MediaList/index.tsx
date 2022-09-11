@@ -10,6 +10,8 @@ import { MediaData, Hit } from 'types/index';
 import { MediaListItem } from 'components/MediaList/MediaListItem';
 import { usePresenter } from 'components/MediaList/usePresenter';
 
+import { MasonryStyled } from 'components/MediaList/styled';
+
 interface Props {
   mediaData: MediaData;
 }
@@ -25,9 +27,9 @@ export const MediaList: FC<Props> = ({ mediaData }) => {
 
   return (
     <>
-      <ListStyled className={'grid'} ref={listRef}>
+      <MasonryStyled columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={1} ref={listRef}>
         {renderMediaList(hits)}
-      </ListStyled>
+      </MasonryStyled>
       {loading && <Spinner />}
     </>
   );

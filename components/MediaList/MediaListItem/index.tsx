@@ -1,6 +1,6 @@
 import {
   ListItemStyled,
-  ImgStyled,
+  ImageStyled,
   VideoStyled,
   ResolutionStyled,
 } from 'components/MediaList/MediaListItem/styled';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const MediaListItem: FC<Props> = memo(({ hit, mediaType }) => {
-  const { previewURL, tags, webformatHeight, picture_id, videos } = hit;
+  const { previewURL, tags, picture_id, videos } = hit;
   let imageUrl = '';
   if (mediaType === MediaType.IMAGE) {
     imageUrl = getImageUrlFromImageMeta(previewURL!);
@@ -29,18 +29,9 @@ export const MediaListItem: FC<Props> = memo(({ hit, mediaType }) => {
   };
 
   return (
-    <ListItemStyled
-      mediaType={mediaType}
-      imageHeight={webformatHeight! ?? 360}
-      className={'grid-item'}
-      component={motion.li}
-      initial={'hidden'}
-      animate={'visible'}
-      variants={variants}
-      button
-    >
+    <ListItemStyled initial={'hidden'} animate={'visible'} variants={variants}>
       {mediaType === MediaType.IMAGE ? (
-        <ImgStyled src={imageUrl} alt={tags} />
+        <ImageStyled src={imageUrl} alt={tags} />
       ) : (
         <>
           <ResolutionStyled>{videos!.large.height === 1080 ? 'HD' : '4K'}</ResolutionStyled>
