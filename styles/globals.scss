@@ -38,7 +38,9 @@ main {
 
 .inner-container {
   max-width: 2000px;
+  box-sizing: border-box;
   margin: auto;
+  padding: 0 16px;
 }
 
 #bottom-boundary {
