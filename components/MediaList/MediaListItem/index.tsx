@@ -3,8 +3,9 @@ import {
   ImageStyled,
   VideoStyled,
   ResolutionStyled,
+  ImageOverlayStyled,
+  AuthorInfoStyled,
 } from 'components/MediaList/MediaListItem/styled';
-import { motion } from 'framer-motion';
 import { memo, FC, MouseEvent } from 'react';
 import { MediaType } from 'types/enums';
 import { Hit } from 'types/index';
@@ -31,7 +32,12 @@ export const MediaListItem: FC<Props> = memo(({ hit, mediaType }) => {
   return (
     <ListItemStyled initial={'hidden'} animate={'visible'} variants={variants}>
       {mediaType === MediaType.IMAGE ? (
-        <ImageStyled src={imageUrl} alt={tags} />
+        <>
+          <ImageStyled src={imageUrl} alt={tags} />
+          <ImageOverlayStyled>
+            <AuthorInfoStyled />
+          </ImageOverlayStyled>
+        </>
       ) : (
         <>
           <ResolutionStyled>{videos!.large.height === 1080 ? 'HD' : '4K'}</ResolutionStyled>
